@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<base href="file:///C:/Users/cn735/Documents/voch/">
+<title>Terraloma Distribution — Wholesale Exotic Boots from León, Mexico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════ */
+:root {
+  --col-bg:        #F7F5F1;
+  --col-surface:   #FFFFFF;
+  --col-panel:     #F0EDE7;
+  --col-panel-2:   #E8E3DC;
+  --col-border:    #E2DDD6;
+  --col-border-hi: #C8C0B4;
+
+  --col-navy:      #1B2A4A;
+  --col-navy-mid:  #2E4270;
+  --col-navy-lite: #4A6298;
+
+  --col-ink:       #1A1A1A;
+  --col-text:      #2C2C2C;
+  --col-mid:       #6B6560;
+  --col-mute:      #9E9690;
+  --col-ghost:     #C8C0B4;
+
+  --col-gold:      #B8922A;
+  --col-gold-lite: #D4AA4A;
+
+  --font-display: 'Libre Baskerville', Georgia, serif;
+  --font-body:    'Raleway', -apple-system, sans-serif;
+
+  --max-w: 1140px;
+  --gutter: clamp(20px, 5vw, 80px);
+}
+
+/* ═══════════════════════════════════════════
+   RESET
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--col-bg);
+  color: var(--col-ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ═══════════════════════════════════════════
+   UTILITY
+═══════════════════════════════════════════ */
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--gutter); }
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: var(--font-body); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--col-navy);
+}
+.eyebrow::before {
+  content: ''; display: inline-block; width: 28px; height: 1px;
+  background: currentColor; flex-shrink: 0;
+}
+
+.section-headline {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 700; color: var(--col-navy);
+  line-height: 1.1; letter-spacing: -0.02em;
+}
+
+.section-sub {
+  font-family: var(--font-body); font-size: 17px;
+  color: var(--col-mid); line-height: 1.75; max-width: 560px;
+}
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--col-navy); color: #fff;
+  font-family: var(--font-body); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  padding: 16px 36px; border: 2px solid var(--col-navy); border-radius: 0;
+  cursor: pointer; transition: background 0.2s, border-color 0.2s; white-space: nowrap;
+}
+.btn-primary:hover { background: var(--col-navy-mid); border-color: var(--col-navy-mid); }
+
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: transparent; color: var(--col-navy);
+  font-family: var(--font-body); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  padding: 14px 34px; border: 2px solid var(--col-navy); border-radius: 0;
+  cursor: pointer; transition: background 0.2s, color 0.2s; white-space: nowrap;
+}
+.btn-secondary:hover { background: var(--col-navy); color: #fff; }
+
+/* ═══════════════════════════════════════════
+   SCROLL ANIMATIONS
+═══════════════════════════════════════════ */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(247,245,241,0.96); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--col-border); transition: box-shadow 0.3s;
+}
+.nav.scrolled { box-shadow: 0 2px 20px rgba(27,42,74,0.08); }
+
+.nav-inner {
+  max-width: var(--max-w); margin: 0 auto; padding: 0 var(--gutter);
+  height: 68px; display: flex; align-items: center; justify-content: space-between;
+}
+
+.nav-logo-text {
+  font-family: var(--font-display); font-size: 22px; font-weight: 700;
+  color: var(--col-navy); letter-spacing: 0.04em;
+}
+
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-links a {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--col-mid); transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--col-navy); }
+
+.nav-cta {
+  font-family: var(--font-body); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase; color: #fff;
+  background: var(--col-navy); padding: 10px 24px; border: 2px solid var(--col-navy);
+  transition: background 0.2s; cursor: pointer; border-radius: 0;
+}
+.nav-cta:hover { background: var(--col-navy-mid); border-color: var(--col-navy-mid); }
+
+/* ═══════════════════════════════════════════
+   01 — HERO
+═══════════════════════════════════════════ */
+.hero {
+  padding-top: 68px; min-height: 100vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; background: var(--col-bg);
+  overflow: hidden; position: relative;
+}
+.hero::after {
+  content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 50%;
+  background: var(--col-panel); z-index: 0;
+}
+
+.hero-content {
+  padding: 80px var(--gutter) 80px clamp(20px, 5vw, 80px);
+  max-width: 680px; margin-left: auto; position: relative; z-index: 1;
+}
+
+.hero-headline {
+  font-family: var(--font-display);
+  font-size: clamp(44px, 5.5vw, 76px); font-weight: 700;
+  color: var(--col-navy); line-height: 1.04; letter-spacing: -0.02em; margin-bottom: 28px;
+}
+.hero-headline em { font-weight: 400; font-style: italic; color: var(--col-mid); display: block; }
+
+.hero-sub { font-size: 18px; color: var(--col-mid); line-height: 1.75; max-width: 480px; margin-bottom: 40px; }
+
+.hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 56px; }
+
+.hero-metrics {
+  display: flex; gap: 0; border-top: 1px solid var(--col-border);
+  padding-top: 36px; flex-wrap: wrap;
+}
+.hero-metric { padding-right: 32px; margin-right: 32px; border-right: 1px solid var(--col-border); }
+.hero-metric:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+.hero-metric-num { font-family: var(--font-display); font-size: 34px; font-weight: 700; color: var(--col-navy); line-height: 1; }
+.hero-metric-label { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--col-mute); margin-top: 4px; }
+
+.hero-image-panel {
+  position: relative; z-index: 1; height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  padding: 40px var(--gutter) 40px 40px;
+}
+
+.hero-boot-img {
+  max-height: 78vh; width: auto; max-width: 100%; object-fit: contain;
+  filter:
+    drop-shadow(0 40px 32px rgba(27,42,74,0.22))
+    drop-shadow(0 8px 12px rgba(27,42,74,0.18))
+    drop-shadow(2px 2px 0px rgba(27,42,74,0.08));
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+/* ═══════════════════════════════════════════
+   02 — CREDIBILITY
+═══════════════════════════════════════════ */
+.credibility {
+  background: var(--col-navy); padding: 96px 0;
+  position: relative; overflow: hidden;
+}
+.credibility::before {
+  content: 'LEÓN'; position: absolute;
+  font-family: var(--font-display); font-size: 240px; font-weight: 700;
+  color: rgba(255,255,255,0.03); right: -20px; top: 50%; transform: translateY(-50%);
+  letter-spacing: -0.04em; pointer-events: none; white-space: nowrap;
+}
+
+.credibility-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+
+.credibility-headline {
+  font-family: var(--font-display); font-size: clamp(32px, 4vw, 52px); font-weight: 700;
+  color: #fff; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 24px;
+}
+.credibility-headline em { font-style: italic; font-weight: 400; color: rgba(255,255,255,0.5); }
+
+.credibility-body { font-size: 17px; color: rgba(255,255,255,0.6); line-height: 1.8; margin-bottom: 28px; }
+
+.credibility-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); }
+.cred-stat { background: var(--col-navy); padding: 28px 24px; transition: background 0.2s; }
+.cred-stat:hover { background: var(--col-navy-mid); }
+.cred-stat-num { font-family: var(--font-display); font-size: 38px; font-weight: 700; color: #fff; line-height: 1; margin-bottom: 8px; }
+.cred-stat-num span { color: var(--col-gold-lite); }
+.cred-stat-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); line-height: 1.5; }
+
+.cred-process-imgs { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 10px; margin-top: 10px; }
+.cred-img-block { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); overflow: hidden; position: relative; }
+.cred-img-block:first-child { grid-column: 1 / -1; height: 200px; }
+.cred-img-block:not(:first-child) { height: 150px; }
+.cred-img-block img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+.cred-img-placeholder {
+  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.2);
+}
+.cred-img-label {
+  position: absolute; bottom: 0; left: 0; right: 0; padding: 8px 14px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.55));
+  font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.8);
+}
+
+/* ═══════════════════════════════════════════
+   03 — THE PROBLEM
+═══════════════════════════════════════════ */
+.problem { padding: 100px 0; background: var(--col-bg); }
+.problem-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.problem-header { position: sticky; top: 100px; }
+
+.problem-list { display: flex; flex-direction: column; gap: 0; }
+.problem-item {
+  padding: 32px 0; border-bottom: 1px solid var(--col-border);
+  display: grid; grid-template-columns: 48px 1fr; gap: 24px; align-items: start;
+}
+.problem-item:first-child { border-top: 1px solid var(--col-border); }
+.problem-num { font-family: var(--font-display); font-size: 32px; font-weight: 700; color: var(--col-border-hi); line-height: 1; padding-top: 4px; }
+.problem-title { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--col-navy); margin-bottom: 10px; line-height: 1.25; }
+.problem-body { font-size: 15px; color: var(--col-mid); line-height: 1.7; }
+
+/* ═══════════════════════════════════════════
+   04 — WHAT WE OFFER
+═══════════════════════════════════════════ */
+.offer { background: var(--col-panel); padding: 100px 0; }
+.offer-header { text-align: center; max-width: 600px; margin: 0 auto 64px; }
+.offer-header .eyebrow { justify-content: center; margin-bottom: 20px; }
+.offer-header .eyebrow::before { display: none; }
+
+.offer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--col-border); background: var(--col-border); }
+.offer-card { background: var(--col-surface); padding: 40px 36px; display: flex; flex-direction: column; gap: 16px; transition: background 0.2s; }
+.offer-card:hover { background: #FDFCFA; }
+.offer-icon { width: 48px; height: 48px; background: var(--col-navy); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.offer-icon svg { width: 22px; height: 22px; fill: none; stroke: #fff; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.offer-card-title { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--col-navy); line-height: 1.2; }
+.offer-card-body { font-size: 15px; color: var(--col-mid); line-height: 1.7; flex: 1; }
+.offer-tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.offer-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--col-navy); background: var(--col-panel); border: 1px solid var(--col-border); padding: 4px 10px; }
+
+/* ═══════════════════════════════════════════
+   05 — CATALOG
+═══════════════════════════════════════════ */
+.catalog { padding: 100px 0; background: var(--col-bg); }
+.catalog-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; flex-wrap: wrap; gap: 24px; }
+
+.catalog-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--col-border); background: var(--col-border); }
+
+.boot-card { background: var(--col-surface); cursor: pointer; position: relative; overflow: hidden; transition: box-shadow 0.3s; display: flex; flex-direction: column; }
+.boot-card:hover { box-shadow: 0 12px 40px rgba(27,42,74,0.12); z-index: 1; }
+.boot-card-img { width: 100%; aspect-ratio: 3/4; background: var(--col-panel); overflow: hidden; position: relative; }
+.boot-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.boot-card:hover .boot-card-img img { transform: scale(1.04); }
+.boot-card-img-placeholder { width: 100%; height: 100%; display: flex; align-items: flex-end; justify-content: flex-start; padding: 16px; }
+.boot-badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #fff; background: var(--col-navy); padding: 5px 10px; }
+.boot-card-body { padding: 20px 24px 28px; flex: 1; display: flex; flex-direction: column; }
+.boot-card-material { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--col-mute); margin-bottom: 6px; }
+.boot-card-name { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--col-navy); line-height: 1.2; margin-bottom: 8px; }
+.boot-card-desc { font-size: 13px; color: var(--col-mid); line-height: 1.65; flex: 1; margin-bottom: 20px; }
+.boot-card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; border-top: 1px solid var(--col-border); }
+.boot-card-moq { font-size: 11px; color: var(--col-mute); font-weight: 600; }
+.boot-card-moq strong { color: var(--col-navy); }
+.boot-card-cta { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--col-navy); border-bottom: 1px solid var(--col-navy); padding-bottom: 1px; transition: color 0.2s; }
+.boot-card-cta:hover { color: var(--col-navy-mid); }
+
+/* ═══════════════════════════════════════════
+   06 — PROCESS
+═══════════════════════════════════════════ */
+.process { background: var(--col-navy); padding: 100px 0; position: relative; overflow: hidden; }
+.process-header { text-align: center; max-width: 580px; margin: 0 auto 72px; }
+
+.process-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; position: relative; }
+.process-steps::before {
+  content: ''; position: absolute; top: 40px;
+  left: calc(16.66% + 20px); right: calc(16.66% + 20px);
+  height: 1px; background: rgba(255,255,255,0.15); z-index: 0;
+}
+.process-step { padding: 0 40px; text-align: center; position: relative; z-index: 1; }
+.process-step-num {
+  width: 80px; height: 80px; background: var(--col-navy-mid);
+  border: 2px solid rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 28px;
+  font-family: var(--font-display); font-size: 28px; font-weight: 700; color: #fff;
+  transition: background 0.3s;
+}
+.process-step:hover .process-step-num { background: rgba(255,255,255,0.15); }
+.process-step-title { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 16px; line-height: 1.2; }
+.process-step-body { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.75; }
+.process-step-body strong { color: rgba(255,255,255,0.9); font-weight: 600; }
+.process-cta { text-align: center; margin-top: 64px; }
+
+/* ═══════════════════════════════════════════
+   07 — SOCIAL PROOF
+═══════════════════════════════════════════ */
+.proof { padding: 100px 0; background: var(--col-bg); }
+.proof-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 56px; flex-wrap: wrap; gap: 24px; }
+.proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+.testimonial-card { background: var(--col-surface); border: 1px solid var(--col-border); padding: 36px 32px; position: relative; transition: box-shadow 0.3s, border-color 0.3s; }
+.testimonial-card:hover { box-shadow: 0 8px 32px rgba(27,42,74,0.08); border-color: var(--col-border-hi); }
+.testimonial-card::before {
+  content: '\201C'; font-family: var(--font-display); font-size: 100px;
+  color: var(--col-navy); opacity: 0.06; position: absolute; top: 8px; left: 24px; line-height: 1; pointer-events: none;
+}
+.testimonial-stars { display: flex; gap: 3px; margin-bottom: 20px; }
+.star { color: var(--col-gold); font-size: 14px; }
+.testimonial-body { font-family: var(--font-display); font-size: 16px; font-style: italic; color: var(--col-text); line-height: 1.75; margin-bottom: 28px; position: relative; z-index: 1; }
+.testimonial-author { display: flex; align-items: center; gap: 14px; padding-top: 24px; border-top: 1px solid var(--col-border); }
+.testimonial-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--col-navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 18px; font-weight: 700; flex-shrink: 0; }
+.testimonial-name { font-size: 14px; font-weight: 700; color: var(--col-navy); letter-spacing: 0.02em; }
+.testimonial-role { font-size: 11px; color: var(--col-mute); letter-spacing: 0.06em; margin-top: 2px; font-weight: 500; }
+
+.proof-photo-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--col-border); background: var(--col-border); margin-top: 64px; }
+.proof-photo { position: relative; overflow: hidden; height: 220px; background: var(--col-panel); }
+.proof-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+.proof-photo:hover img { transform: scale(1.05); }
+.proof-photo-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--col-mute); }
+.proof-photo-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 12px 16px; background: linear-gradient(transparent, rgba(27,42,74,0.7)); font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.9); }
+
+/* ═══════════════════════════════════════════
+   08 — LEAD MAGNET
+═══════════════════════════════════════════ */
+.leadmagnet { background: var(--col-panel); border-top: 1px solid var(--col-border); border-bottom: 1px solid var(--col-border); }
+.leadmagnet-inner { display: grid; grid-template-columns: 1fr 1fr; min-height: 480px; }
+.leadmagnet-content {
+  padding: 80px var(--gutter) 80px clamp(20px, 5vw, 80px);
+  max-width: 560px; margin-left: auto; display: flex; flex-direction: column; justify-content: center;
+}
+.leadmagnet-headline { font-family: var(--font-display); font-size: clamp(28px, 3.5vw, 44px); font-weight: 700; color: var(--col-navy); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
+.leadmagnet-sub { font-size: 16px; color: var(--col-mid); line-height: 1.75; margin-bottom: 28px; }
+.leadmagnet-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+.leadmagnet-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--col-mid); font-weight: 500; }
+.leadmagnet-list li::before { content: '✓'; color: var(--col-navy); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+.lm-form { display: flex; gap: 0; flex-wrap: wrap; }
+.lm-input { flex: 1; min-width: 200px; background: #fff; border: 2px solid var(--col-border-hi); border-right: none; color: var(--col-text); font-family: var(--font-body); font-size: 14px; padding: 14px 18px; outline: none; transition: border-color 0.2s; }
+.lm-input::placeholder { color: var(--col-ghost); }
+.lm-input:focus { border-color: var(--col-navy); }
+.lm-btn { background: var(--col-navy); color: #fff; font-family: var(--font-body); font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 14px 28px; border: 2px solid var(--col-navy); cursor: pointer; transition: background 0.2s; white-space: nowrap; }
+.lm-btn:hover { background: var(--col-navy-mid); }
+.lm-note { font-size: 11px; color: var(--col-mute); margin-top: 12px; letter-spacing: 0.04em; }
+
+.leadmagnet-visual { background: var(--col-navy); display: flex; align-items: center; justify-content: center; padding: 60px 40px; position: relative; overflow: hidden; }
+.leadmagnet-visual::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--col-navy-mid) 0%, var(--col-navy) 60%); }
+
+.pdf-mockup { position: relative; z-index: 1; width: 230px; background: #fff; box-shadow: 0 24px 64px rgba(0,0,0,0.4); transform: rotate(-3deg); transition: transform 0.3s; }
+.pdf-mockup:hover { transform: rotate(0deg) scale(1.02); }
+.pdf-mockup-header { background: var(--col-navy); padding: 18px 22px 14px; }
+.pdf-mockup-logo { font-family: var(--font-display); font-size: 14px; font-weight: 700; color: #fff; letter-spacing: 0.04em; margin-bottom: 4px; }
+.pdf-mockup-title { font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+.pdf-mockup-body { padding: 18px 22px 22px; display: flex; flex-direction: column; gap: 8px; }
+.pdf-line { height: 7px; background: var(--col-panel-2); border-radius: 2px; }
+.pdf-line-short { width: 55%; } .pdf-line-med { width: 78%; } .pdf-line-full { width: 100%; }
+.pdf-img-block { height: 72px; background: var(--col-panel); border: 1px solid var(--col-border); margin: 2px 0; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--col-mute); }
+.pdf-tag { position: absolute; top: -10px; right: -10px; background: var(--col-gold); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 11px; transform: rotate(3deg); }
+
+/* ═══════════════════════════════════════════
+   09 — WHOLESALE FORM
+═══════════════════════════════════════════ */
+.wholesale { padding: 100px 0; background: var(--col-bg); }
+.wholesale-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+
+.wholesale-perks { display: flex; flex-direction: column; gap: 0; }
+.perk { display: flex; gap: 20px; align-items: flex-start; padding: 24px 0; border-bottom: 1px solid var(--col-border); }
+.perk:first-child { border-top: 1px solid var(--col-border); }
+.perk-icon { width: 44px; height: 44px; background: var(--col-navy); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.perk-icon svg { width: 20px; height: 20px; stroke: #fff; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.perk-title { font-size: 14px; font-weight: 700; color: var(--col-navy); letter-spacing: 0.02em; margin-bottom: 4px; }
+.perk-body { font-size: 14px; color: var(--col-mid); line-height: 1.6; }
+
+.form-card { background: var(--col-surface); border: 1px solid var(--col-border); padding: 48px 44px; }
+.form-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--col-navy); margin-bottom: 12px; }
+.form-title { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--col-navy); line-height: 1.2; margin-bottom: 8px; }
+.form-subtitle { font-size: 14px; color: var(--col-mid); margin-bottom: 36px; line-height: 1.65; }
+.form-group { margin-bottom: 20px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--col-text); margin-bottom: 8px; }
+.form-input, .form-select, .form-textarea {
+  width: 100%; background: var(--col-bg); border: 1px solid var(--col-border-hi); border-radius: 0;
+  color: var(--col-text); font-family: var(--font-body); font-size: 15px; font-weight: 400;
+  padding: 12px 14px; outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-input::placeholder, .form-textarea::placeholder { color: var(--col-ghost); }
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--col-navy); box-shadow: 0 0 0 3px rgba(27,42,74,0.07); }
+.form-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231B2A4A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; background-color: var(--col-bg); cursor: pointer; }
+.form-textarea { resize: vertical; min-height: 80px; }
+.form-submit { width: 100%; background: var(--col-navy); color: #fff; font-family: var(--font-body); font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; padding: 18px; border: 2px solid var(--col-navy); cursor: pointer; transition: background 0.2s; margin-top: 8px; }
+.form-submit:hover { background: var(--col-navy-mid); border-color: var(--col-navy-mid); }
+.form-note { font-size: 11px; color: var(--col-mute); margin-top: 14px; line-height: 1.65; text-align: center; }
+
+/* ═══════════════════════════════════════════
+   10 — FOOTER
+═══════════════════════════════════════════ */
+.footer { background: var(--col-navy); padding: 64px 0 40px; }
+.footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 40px; }
+.footer-brand-logo { font-family: var(--font-display); font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 16px; letter-spacing: 0.04em; }
+.footer-brand-body { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.75; max-width: 280px; margin-bottom: 28px; }
+.footer-social { display: flex; gap: 10px; }
+.footer-social-link { width: 40px; height: 40px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; transition: background 0.2s; cursor: pointer; color: rgba(255,255,255,0.7); }
+.footer-social-link:hover { background: rgba(255,255,255,0.15); color: #fff; }
+.footer-col-title { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 20px; }
+.footer-col-item { display: block; font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 10px; transition: color 0.2s; cursor: pointer; }
+.footer-col-item:hover { color: #fff; }
+.footer-col-item svg { display: inline; vertical-align: middle; margin-right: 8px; width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); letter-spacing: 0.04em; }
+.footer-origin { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+.footer-origin::before { content: ''; width: 20px; height: 1px; background: rgba(255,255,255,0.2); }
+
+/* ═══════════════════════════════════════════
+   STICKY WHATSAPP
+═══════════════════════════════════════════ */
+.wa-btn { position: fixed; bottom: 28px; right: 28px; z-index: 200; width: 56px; height: 56px; background: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,0.4); cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; border-radius: 50%; }
+.wa-btn:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(37,211,102,0.5); }
+.wa-btn svg { width: 28px; height: 28px; fill: #fff; }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero::after { display: none; }
+  .hero-content { max-width: 100%; padding: 100px var(--gutter) 48px; margin-left: 0; }
+  .hero-image-panel { height: 420px; padding: 40px var(--gutter); justify-content: flex-start; }
+  .hero-boot-img { max-height: 380px; }
+  .credibility-inner { grid-template-columns: 1fr; gap: 48px; }
+  .problem-inner { grid-template-columns: 1fr; gap: 40px; }
+  .problem-header { position: static; }
+  .wholesale-inner { grid-template-columns: 1fr; gap: 48px; }
+  .offer-grid { grid-template-columns: 1fr 1fr; }
+  .catalog-grid { grid-template-columns: 1fr 1fr; }
+  .process-steps { grid-template-columns: 1fr; gap: 40px; }
+  .process-steps::before { display: none; }
+  .leadmagnet-inner { grid-template-columns: 1fr; }
+  .leadmagnet-visual { min-height: 300px; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .proof-grid { grid-template-columns: 1fr 1fr; }
+  .proof-photo-strip { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .offer-grid, .catalog-grid { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .credibility-stats { grid-template-columns: 1fr; }
+  .hero-metric { border-right: none; margin-right: 0; padding-right: 0; }
+  .proof-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .form-card { padding: 32px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- STICKY WHATSAPP -->
+<a href="https://wa.me/524439171366" target="_blank" class="wa-btn" title="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <img src="terraloma.logo.png" alt="Terraloma Distribution" style="height:56px;width:auto;">
+    <ul class="nav-links">
+      <li><a href="#why-leon">Why León</a></li>
+      <li><a href="#catalog">Catalog</a></li>
+      <li><a href="#how-it-works">How It Works</a></li>
+    </ul>
+    <a href="#wholesale-form" class="nav-cta">Request Access</a>
+  </div>
+</nav>
+
+<!-- ══════ 01 — HERO ══════ -->
+<section class="hero">
+  <div class="hero-content">
+    <div style="margin-bottom:28px" class="reveal">
+      <span class="eyebrow">León, Guanajuato — Direct from the Workshop</span>
+    </div>
+    <h1 class="hero-headline reveal reveal-delay-1">
+      Start your boot<br>
+      business with<br>
+      <em>as little as 14 pairs.</em>
+    </h1>
+    <p class="hero-sub reveal reveal-delay-2">
+      You don't need experience, a warehouse, or a big budget. We handle the sourcing, customs, and shipping from León — the leather capital of the world. You sell. We supply.
+    </p>
+    <div class="hero-actions reveal reveal-delay-3">
+      <a href="#wholesale-form" class="btn-primary">Get the Catalog →</a>
+      <a href="#catalog" class="btn-secondary">See the Boots</a>
+    </div>
+    <div class="hero-metrics reveal reveal-delay-4">
+      <div class="hero-metric">
+        <div class="hero-metric-num">14</div>
+        <div class="hero-metric-label">Pairs to start</div>
+      </div>
+      <div class="hero-metric">
+        <div class="hero-metric-num">0</div>
+        <div class="hero-metric-label">Permits needed</div>
+      </div>
+      <div class="hero-metric">
+        <div class="hero-metric-num">24h</div>
+        <div class="hero-metric-label">We respond in</div>
+      </div>
+      <div class="hero-metric">
+        <div class="hero-metric-num">40<span style="font-size:20px">+</span></div>
+        <div class="hero-metric-label">Yrs manufacturing</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-image-panel">
+    <img src="firstboot.png" alt="Terraloma exotic cowboy boot" class="hero-boot-img" onerror="this.style.display='none'">
+  </div>
+</section>
+
+<!-- ══════ 02 — WHY LEON ══════ -->
+<section class="credibility" id="why-leon">
+  <div class="container">
+    <div class="credibility-inner">
+      <div>
+        <div class="reveal" style="margin-bottom:24px">
+          <span style="display:inline-flex;align-items:center;gap:12px;font-family:var(--font-body);font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.4);">
+            <span style="display:inline-block;width:28px;height:1px;background:rgba(255,255,255,0.3)"></span>
+            Why León
+          </span>
+        </div>
+        <h2 class="credibility-headline reveal reveal-delay-1">
+          The leather capital<br>
+          <em>of the Western<br>Hemisphere.</em>
+        </h2>
+        <p class="credibility-body reveal reveal-delay-2">
+          León, Guanajuato produces more leather goods than almost any city outside of Asia. The workshops here have supplied major American brands — quietly, without attribution — for over 40 years. We cut out the middlemen and work directly with the artisan families who make the product.
+        </p>
+        <p class="credibility-body reveal reveal-delay-2" style="margin-bottom:0">
+          The exotic leathers — Pirarucu, Caiman, Full-Quill Ostrich, Python, Stingray — are not imitations. They are cut and stitched by hand in the same workshops that supply retailers charging four times the price.
+        </p>
+      </div>
+
+      <div class="reveal reveal-delay-2">
+        <div class="credibility-stats">
+          <div class="cred-stat">
+            <div class="cred-stat-num">40<span>+</span></div>
+            <div class="cred-stat-label">Years of leather manufacturing in León</div>
+          </div>
+          <div class="cred-stat">
+            <div class="cred-stat-num"><span>#1</span></div>
+            <div class="cred-stat-label">Leather city in the Americas</div>
+          </div>
+          <div class="cred-stat">
+            <div class="cred-stat-num">5</div>
+            <div class="cred-stat-label">Exotic leather types in stock</div>
+          </div>
+          <div class="cred-stat">
+            <div class="cred-stat-num">14</div>
+            <div class="cred-stat-label">Pair MOQ — lowest in category</div>
+          </div>
+        </div>
+        <div class="cred-process-imgs">
+          <div class="cred-img-block">
+            <img src="taller1.png" alt="León workshop" onerror="this.style.display='none'">
+            <div class="cred-img-placeholder">Workshop floor — León, Guanajuato</div>
+            <div class="cred-img-label">Workshop Floor — León, Guanajuato</div>
+          </div>
+          <div class="cred-img-block">
+            <img src="taller2.png" alt="Leather cutting" onerror="this.style.display='none'">
+            <div class="cred-img-placeholder">Hand cutting — exotic leather</div>
+            <div class="cred-img-label">Hand Cutting</div>
+          </div>
+          <div class="cred-img-block">
+            <img src="taller3.png" alt="Boot stitching" onerror="this.style.display='none'">
+            <div class="cred-img-placeholder">Stitching — welt construction</div>
+            <div class="cred-img-label">Welt Stitching</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ 03 — THE PROBLEM ══════ -->
+<section class="problem">
+  <div class="container">
+    <div class="problem-inner">
+      <div class="problem-header">
+        <div class="eyebrow reveal" style="margin-bottom:24px">The Problem We Solve</div>
+        <h2 class="section-headline reveal reveal-delay-1">You want to start.<br>Here's what's<br>stopping you.</h2>
+        <p class="section-sub reveal reveal-delay-2" style="margin-top:20px">These are the real reasons most people never pull the trigger on a boot business. We built Terraloma to remove every one of them.</p>
+      </div>
+      <div class="problem-list">
+        <div class="problem-item reveal">
+          <div class="problem-num">01</div>
+          <div>
+            <div class="problem-title">"I don't know where to source."</div>
+            <p class="problem-body">Finding a real manufacturer — not a middleman with borrowed photos — is the hardest part. We're based in León, Guanajuato. We can show you the workshop, the artisans, and the production floor. Nothing is hidden.</p>
+          </div>
+        </div>
+        <div class="problem-item reveal reveal-delay-1">
+          <div class="problem-num">02</div>
+          <div>
+            <div class="problem-title">"I'm afraid of losing money on my first order."</div>
+            <p class="problem-body">Most importers demand 50–100 pairs minimum. That's thousands of dollars on a product you've never tested. Our MOQ is 14 pairs — low enough to test the market without betting your savings on it.</p>
+          </div>
+        </div>
+        <div class="problem-item reveal reveal-delay-2">
+          <div class="problem-num">03</div>
+          <div>
+            <div class="problem-title">"I don't have permits for exotic leather."</div>
+            <p class="problem-body">You don't need them to start. Our embossed cowhide line gives you the exact same look — Pirarucu scale, Caiman texture, Ostrich quill — using genuine cowhide with exotic prints. No permits required. No legal risk. Just boots that sell.</p>
+          </div>
+        </div>
+        <div class="problem-item reveal reveal-delay-3">
+          <div class="problem-num">04</div>
+          <div>
+            <div class="problem-title">"I don't know how customs or shipping works."</div>
+            <p class="problem-body">We handle it. You place the order, we manage the paperwork, freight, and delivery to your door in the US. Delivery is 7–14 business days depending on model availability. You don't need to know anything about importing.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ 04 — OFFER ══════ -->
+<section class="offer" id="what-we-offer">
+  <div class="container">
+    <div class="offer-header">
+      <div class="eyebrow reveal" style="margin-bottom:16px">What We Offer</div>
+      <h2 class="section-headline reveal reveal-delay-1">Everything a reseller<br>needs. Nothing extra.</h2>
+    </div>
+    <div class="offer-grid">
+      <div class="offer-card reveal" style="border-top: 3px solid var(--col-navy);">
+        <div class="offer-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        <div class="offer-card-title">Genuine Exotic Leather</div>
+        <p class="offer-card-body">Authentic Pirarucu, Caiman, Full-Quill Ostrich, Python, and Stingray. Hand-cut and stitched in León. For established retailers who already hold the required import and resale permits.</p>
+        <div class="offer-tag-list"><span class="offer-tag">Pirarucu</span><span class="offer-tag">Caiman</span><span class="offer-tag">Ostrich</span><span class="offer-tag">Python</span><span class="offer-tag">Stingray</span><span class="offer-tag">Permit required</span></div>
+      </div>
+      <div class="offer-card reveal reveal-delay-1" style="border-top: 3px solid var(--col-gold);">
+        <div class="offer-icon" style="background:var(--col-gold)"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        <div class="offer-card-title">Embossed Cowhide</div>
+        <p class="offer-card-body">Exotic-print embossed genuine cowhide. The same aesthetic as exotic leather — Pirarucu scale, Caiman texture, Ostrich quill — without the permit requirements. 100% real leather. The smart entry point for new resellers.</p>
+        <div class="offer-tag-list"><span class="offer-tag">No permits needed</span><span class="offer-tag">100% genuine leather</span><span class="offer-tag">Best for new resellers</span></div>
+      </div>
+      <div class="offer-card reveal reveal-delay-2">
+        <div class="offer-icon"><svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2zM16 3H8a2 2 0 00-2 2v2h12V5a2 2 0 00-2-2z"/></svg></div>
+        <div class="offer-card-title">14-Pair MOQ</div>
+        <p class="offer-card-body">Minimum 14 pairs per style on both lines. Test a new model without overcommitting. Mix sizes freely within the order.</p>
+        <div class="offer-tag-list"><span class="offer-tag">No size minimums</span><span class="offer-tag">Mix & match sizes</span></div>
+      </div>
+      <div class="offer-card reveal">
+        <div class="offer-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.77 9.77 19.79 19.79 0 01.7 1.18 2 2 0 012.68 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l.91-.91a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 15.17v1.75z"/></svg></div>
+        <div class="offer-card-title">Direct WhatsApp Line</div>
+        <p class="offer-card-body">No ticketing system. No email queue. You message us directly on WhatsApp and get a human response within hours, not days.</p>
+        <div class="offer-tag-list"><span class="offer-tag">Direct contact</span><span class="offer-tag">Same-day reply</span></div>
+      </div>
+      <div class="offer-card reveal reveal-delay-1">
+        <div class="offer-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div class="offer-card-title">Ships from México</div>
+        <p class="offer-card-body">Orders ship from León to US destinations. Customs paperwork handled. Delivery is 7–14 business days depending on model availability.</p>
+        <div class="offer-tag-list"><span class="offer-tag">León → USA</span><span class="offer-tag">7–14 bus. days</span></div>
+      </div>
+      <div class="offer-card reveal reveal-delay-2">
+        <div class="offer-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+        <div class="offer-card-title">Private Website</div>
+        <p class="offer-card-body">Approved resellers get access to a private website with full inventory, all available styles, and pricing. Not indexed. Not public. Browse and order directly.</p>
+        <div class="offer-tag-list"><span class="offer-tag">Resellers only</span><span class="offer-tag">Private website</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ 05 — CATALOG ══════ -->
+<section class="catalog" id="catalog">
+  <div class="container">
+    <div class="catalog-header">
+      <div>
+        <div class="eyebrow reveal" style="margin-bottom:16px">Available Styles</div>
+        <h2 class="section-headline reveal reveal-delay-1">A preview of<br>the catalog.</h2>
+      </div>
+      <p class="reveal" style="font-size:14px;color:var(--col-mid);max-width:300px;line-height:1.65;font-weight:500">Prices are not listed here. Approved resellers get access to the private website with full inventory and pricing.</p>
+    </div>
+
+    <div class="catalog-grid">
+      <div class="boot-card reveal">
+        <div class="boot-card-img">
+          <img src="boot1.png" alt="Crocodile embossed cowboy boot" onerror="this.style.display='none'">
+          <div class="boot-card-img-placeholder"><span class="boot-badge" style="background:var(--col-gold)">Crocodile Embossed</span></div>
+        </div>
+        <div class="boot-card-body">
+          <div class="boot-card-material">Embossed · Crocodile Print</div>
+          <div class="boot-card-name">The Americano</div>
+          <p class="boot-card-desc">Crocodile-embossed cowhide vamp, black shaft with American flag detail and laser-cut stars. Wide square toe. Brown and Black.</p>
+          <div class="boot-card-footer">
+            <div class="boot-card-moq">MOQ <strong>14 pairs</strong></div>
+            <a href="#wholesale-form" class="boot-card-cta">Request info →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="boot-card reveal reveal-delay-1">
+        <div class="boot-card-img">
+          <img src="boot2.png" alt="Python embossed cowboy boot" onerror="this.style.display='none'">
+          <div class="boot-card-img-placeholder"><span class="boot-badge" style="background:var(--col-gold)">Python Embossed</span></div>
+        </div>
+        <div class="boot-card-body">
+          <div class="boot-card-material">Embossed · Python Print</div>
+          <div class="boot-card-name">The Nightrider</div>
+          <p class="boot-card-desc">All-black python-embossed cowhide, tone-on-tone construction. Clean and versatile — moves across every demographic.</p>
+          <div class="boot-card-footer">
+            <div class="boot-card-moq">MOQ <strong>14 pairs</strong></div>
+            <a href="#wholesale-form" class="boot-card-cta">Request info →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="boot-card reveal reveal-delay-2">
+        <div class="boot-card-img">
+          <img src="boot3.png" alt="Pirarucu embossed cowboy boot" onerror="this.style.display='none'">
+          <div class="boot-card-img-placeholder"><span class="boot-badge" style="background:var(--col-gold)">Pirarucu Embossed</span></div>
+        </div>
+        <div class="boot-card-body">
+          <div class="boot-card-material">Embossed · Pirarucu Print</div>
+          <div class="boot-card-name">The Tejano</div>
+          <p class="boot-card-desc">Pirarucu-embossed cowhide vamp, oxblood shaft with traditional embroidery and diamond-pattern inlay. Wide square toe.</p>
+          <div class="boot-card-footer">
+            <div class="boot-card-moq">MOQ <strong>14 pairs</strong></div>
+            <a href="#wholesale-form" class="boot-card-cta">Request info →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="boot-card reveal reveal-delay-3">
+        <div class="boot-card-img">
+          <img src="boot4.png" alt="Python embossed ostrich cowboy boot" onerror="this.style.display='none'">
+          <div class="boot-card-img-placeholder"><span class="boot-badge" style="background:var(--col-gold)">Python Embossed</span></div>
+        </div>
+        <div class="boot-card-body">
+          <div class="boot-card-material">Embossed · Python Print</div>
+          <div class="boot-card-name">The Rancher</div>
+          <p class="boot-card-desc">Python-embossed cowhide vamp, dark chocolate shaft with diamond inlay embroidery. One of the highest-margin models in the lineup.</p>
+          <div class="boot-card-footer">
+            <div class="boot-card-moq">MOQ <strong>14 pairs</strong></div>
+            <a href="#wholesale-form" class="boot-card-cta">Request info →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:48px" class="reveal">
+      <p style="font-size:14px;color:var(--col-mute);margin-bottom:24px;font-weight:500;letter-spacing:0.04em">20+ additional styles in the private catalog — Caiman, Python, Stingray, and more.</p>
+      <a href="#wholesale-form" class="btn-primary">Request Full Catalog Access →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ 06 — HOW IT WORKS ══════ -->
+<section class="process" id="how-it-works">
+  <div class="container">
+    <div class="process-header">
+      <div class="reveal" style="margin-bottom:20px">
+        <span style="font-family:var(--font-body);font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.4)">How It Works</span>
+      </div>
+      <h2 class="section-headline reveal reveal-delay-1" style="color:#fff;text-align:center;margin-bottom:16px">From application<br>to delivery in 3 steps.</h2>
+      <p class="section-sub reveal reveal-delay-2" style="color:rgba(255,255,255,0.55);text-align:center;margin:0 auto">No brokers. No mystery. You deal directly with us.</p>
+    </div>
+
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="process-step-num">01</div>
+        <div class="process-step-title">Submit Your Application</div>
+        <p class="process-step-body">Fill out the short form below. Tell us your channel and estimated volume. We review every application manually. <strong>Turnaround: under 24 hours.</strong></p>
+      </div>
+      <div class="process-step reveal reveal-delay-1">
+        <div class="process-step-num">02</div>
+        <div class="process-step-title">Get Access to the Site</div>
+        <p class="process-step-body">Approved resellers receive a link to the private website — full inventory, styles, materials, and pricing. Browse, select what you want, we send a proforma invoice. <strong>Payment via wire or Zelle.</strong></p>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="process-step-num">03</div>
+        <div class="process-step-title">We Ship Direct to You</div>
+        <p class="process-step-body">Production takes 2–3 weeks after confirmation. US delivery adds 5–7 business days. <strong>Tracking provided. Customs paperwork handled.</strong></p>
+      </div>
+    </div>
+
+    <div class="process-cta reveal">
+      <a href="#wholesale-form" class="btn-primary" style="background:#fff;color:var(--col-navy);border-color:#fff">Start Your Application →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ 07 — SOCIAL PROOF ══════ -->
+<section class="proof" id="proof">
+  <div class="container">
+    <div class="proof-header">
+      <div>
+        <div class="eyebrow reveal" style="margin-bottom:16px">What Resellers Say</div>
+        <h2 class="section-headline reveal reveal-delay-1">The numbers<br>speak for themselves.</h2>
+      </div>
+      <div class="reveal">
+        <p style="font-size:13px;color:var(--col-mute);font-weight:500;max-width:260px;line-height:1.6;text-align:right">These are accounts who placed their first order with real skepticism. They're still ordering.</p>
+      </div>
+    </div>
+
+    <div class="proof-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <p class="testimonial-body">"Ordered 28 pairs of the Pirarucu model. Sold through in 11 days. My margin was better than anything I've run through a US distributor in four years. I reordered the same week."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">R</div>
+          <div><div class="testimonial-name">Randy M.</div><div class="testimonial-role">Boot Retailer · San Antonio, TX</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <p class="testimonial-body">"I've sourced from El Paso and Fort Worth for 15 years. The León product is a different tier — and the price makes no sense until you see the volume I'm moving. First order was 56 pairs."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">D</div>
+          <div><div class="testimonial-name">Debbie L.</div><div class="testimonial-role">Western Wear Store · Nashville, TN</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <p class="testimonial-body">"I run a booth at three Texas flea markets. Caiman boots at that price point — I can move them at $189 and still double my money. That's the model I've been looking for."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">T</div>
+          <div><div class="testimonial-name">Tommy V.</div><div class="testimonial-role">Flea Market Vendor · Houston, TX</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proof-photo-strip reveal">
+      <div class="proof-photo">
+        <img src="taller1.png" alt="León workshop" onerror="this.style.display='none'">
+        <div class="proof-photo-placeholder">Workshop · León</div>
+        <div class="proof-photo-label">The Workshop Floor</div>
+      </div>
+      <div class="proof-photo">
+        <img src="taller2.png" alt="Leather cutting" onerror="this.style.display='none'">
+        <div class="proof-photo-placeholder">Leather Cutting</div>
+        <div class="proof-photo-label">Hand Cutting</div>
+      </div>
+      <div class="proof-photo">
+        <img src="taller3.png" alt="Boot stitching" onerror="this.style.display='none'">
+        <div class="proof-photo-placeholder">Stitching Process</div>
+        <div class="proof-photo-label">Welt Stitching</div>
+      </div>
+      <div class="proof-photo">
+        <img src="taller4.png" alt="Finished boots" onerror="this.style.display='none'">
+        <div class="proof-photo-placeholder">Finished Product</div>
+        <div class="proof-photo-label">Ready to Ship</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ 08 — LEAD MAGNET ══════ -->
+<section class="leadmagnet" id="free-guide">
+  <div class="leadmagnet-inner">
+    <div class="leadmagnet-content">
+      <div class="eyebrow reveal" style="margin-bottom:20px">Free Download</div>
+      <h2 class="leadmagnet-headline reveal reveal-delay-1">The Reseller's Guide<br>to Exotic Boots.</h2>
+      <p class="leadmagnet-sub reveal reveal-delay-2">12 pages. No fluff. Everything you need to know before placing your first wholesale order for exotic leather cowboy boots.</p>
+      <ul class="leadmagnet-list reveal reveal-delay-2">
+        <li>Which exotic leathers sell fastest in which markets</li>
+        <li>How to price for maximum margin vs. maximum velocity</li>
+        <li>What to look for in a legitimate Mexican source</li>
+        <li>Size distribution guide for first-time buyers</li>
+        <li>Questions to ask any supplier before you wire money</li>
+      </ul>
+      <form id="pdfForm" class="lm-form reveal reveal-delay-3" onsubmit="handleLMSubmit(event)">
+        <input class="lm-input" name="email" type="email" placeholder="Enter your email address" required>
+        <button class="lm-btn" type="submit">Get the Guide →</button>
+      </form>
+      <p class="lm-note reveal">Free. No spam. Unsubscribe anytime.</p>
+    </div>
+    <div class="leadmagnet-visual">
+      <div class="pdf-mockup">
+        <div class="pdf-tag">Free PDF</div>
+        <div class="pdf-mockup-header">
+          <div class="pdf-mockup-logo">TERRALOMA</div>
+          <div class="pdf-mockup-title">Reseller's Guide to Exotic Boots</div>
+        </div>
+        <div class="pdf-mockup-body">
+          <div class="pdf-line pdf-line-short"></div>
+          <div class="pdf-img-block">[ Boot Photo ]</div>
+          <div class="pdf-line pdf-line-full"></div>
+          <div class="pdf-line pdf-line-med"></div>
+          <div class="pdf-line pdf-line-full"></div>
+          <div class="pdf-line pdf-line-short"></div>
+          <div style="height:4px"></div>
+          <div class="pdf-line pdf-line-med"></div>
+          <div class="pdf-line pdf-line-full"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ 09 — WHOLESALE FORM ══════ -->
+<section class="wholesale" id="wholesale-form">
+  <div class="container">
+    <div class="wholesale-inner">
+      <div class="wholesale-left">
+        <div class="eyebrow reveal" style="margin-bottom:24px">Apply for Access</div>
+        <h2 class="section-headline reveal reveal-delay-1">Ready to see<br>the private site?</h2>
+        <p class="section-sub reveal reveal-delay-2" style="margin-top:20px;margin-bottom:40px">Submit your application. We review manually and respond within 24 hours. Approved accounts get the full catalog, pricing, and a direct WhatsApp line.</p>
+        <div class="wholesale-perks reveal reveal-delay-3">
+          <div class="perk">
+            <div class="perk-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+            <div>
+              <div class="perk-title">No gatekeeping — we review everyone</div>
+              <p class="perk-body">We work with retailers, online resellers, flea market vendors, and boutiques. If you sell boots, we want to talk.</p>
+            </div>
+          </div>
+          <div class="perk">
+            <div class="perk-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div>
+              <div class="perk-title">Your pricing stays private</div>
+              <p class="perk-body">Wholesale pricing is never posted publicly. Your margin is your competitive advantage — we protect it.</p>
+            </div>
+          </div>
+          <div class="perk">
+            <div class="perk-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div>
+              <div class="perk-title">Response within 24 hours</div>
+              <p class="perk-body">A real person reviews your application and responds the same business day. No automated pipeline.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-1">
+        <div class="form-card">
+          <div class="form-eyebrow">Wholesale Application</div>
+          <div class="form-title">Request<br>Site Access</div>
+          <p class="form-subtitle">Approved resellers receive a link to the private website with full inventory and pricing, plus a direct WhatsApp contact for placing orders.</p>
+          <form id="wholesaleForm" onsubmit="handleWholesaleSubmit(event)">
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">First Name</label><input class="form-input" name="firstName" type="text" placeholder="First" required></div>
+              <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" name="lastName" type="text" placeholder="Last" required></div>
+            </div>
+            <div class="form-group"><label class="form-label">Business Email</label><input class="form-input" name="email" type="email" placeholder="you@yourbusiness.com" required></div>
+            <div class="form-group"><label class="form-label">Business Name</label><input class="form-input" name="businessName" type="text" placeholder="Your store or business name" required></div>
+            <div class="form-group">
+              <label class="form-label">Business Type</label>
+              <select class="form-select" name="businessType" required>
+                <option value="" disabled selected>Select your channel</option>
+                <option>Boot / Western wear retailer</option>
+                <option>Online reseller (Amazon, eBay, Shopify)</option>
+                <option>Flea market / trade show vendor</option>
+                <option>Boutique clothing store</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Estimated Monthly Volume</label>
+              <select class="form-select" name="volume" required>
+                <option value="" disabled selected>Pairs per month</option>
+                <option>14–30 pairs</option>
+                <option>30–100 pairs</option>
+                <option>100–300 pairs</option>
+                <option>300+ pairs</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Anything else? <span style="color:var(--col-mute);font-weight:500">(optional)</span></label>
+              <textarea class="form-textarea" name="message" placeholder="Current suppliers, styles you're interested in, anything relevant..."></textarea>
+            </div>
+            <button class="form-submit" type="submit">Submit Application →</button>
+          </form>
+          <p class="form-note">No spam. No sales calls. We'll send the link to the private site and a WhatsApp number for direct ordering.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ 10 — FOOTER ══════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <img src="terraloma.logo.png" alt="Terraloma Distribution" style="height:44px;width:auto;margin-bottom:16px;filter:brightness(0) invert(1);">
+        <p class="footer-brand-body">Wholesale distribution of exotic and artisan leather cowboy boots. Manufactured in León, Guanajuato, México. Sold to resellers across the United States.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/524439171366" target="_blank" class="footer-social-link" title="WhatsApp">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+          <a href="https://instagram.com/terralomamx" target="_blank" class="footer-social-link" title="Instagram">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="mailto:terraloma.distribution@gmail.com" class="footer-social-link" title="Email">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <a href="mailto:terraloma.distribution@gmail.com" class="footer-col-item">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          terraloma.distribution@gmail.com
+        </a>
+        <a href="https://wa.me/524439171366" target="_blank" class="footer-col-item">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.77 9.77 19.79 19.79 0 01.7 1.18 2 2 0 012.68 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l.91-.91a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 15.17v1.75z"/></svg>
+          WhatsApp Direct
+        </a>
+        <a href="https://instagram.com/terralomamx" target="_blank" class="footer-col-item">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg>
+          @terralomamx
+        </a>
+      </div>
+      <div>
+        <div class="footer-col-title">Leathers</div>
+        <span class="footer-col-item">Pirarucu Scale</span>
+        <span class="footer-col-item">Caiman Belly</span>
+        <span class="footer-col-item">Full-Quill Ostrich</span>
+        <span class="footer-col-item">Python</span>
+        <span class="footer-col-item">Stingray</span>
+      </div>
+      <div>
+        <div class="footer-col-title">For Resellers</div>
+        <a href="#wholesale-form" class="footer-col-item">Request Catalog</a>
+        <a href="#free-guide" class="footer-col-item">Free Buyer's Guide</a>
+        <a href="#why-leon" class="footer-col-item">Why León</a>
+        <a href="#how-it-works" class="footer-col-item">How It Works</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Terraloma Distribution. All rights reserved.</p>
+      <div class="footer-origin">Manufactured in León, Guanajuato, México</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 20); });
+
+window.addEventListener('load', () => {
+  document.querySelectorAll('.reveal').forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight) setTimeout(() => el.classList.add('visible'), 100);
+  });
+});
+
+/* ═══════════════════════════════════════════
+   FORM ENDPOINTS — REPLACE BEFORE GOING LIVE
+   ─────────────────────────────────────────
+   1) GOOGLE_SHEETS_URL: paste the Web App URL you get
+      after deploying the Apps Script (see setup guide).
+   2) MAILERLITE_URL: paste the "action" URL from your
+      MailerLite embedded form (see setup guide).
+═══════════════════════════════════════════ */
+const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbzRmOWnklr-0mEcPQgzm5DNtxUxvEcQYbkDDBe_4StyEsvPTKw7Tf3ITxXd_UiKVwsl/exec";
+const MAILERLITE_URL    = "https://assets.mailerlite.com/jsonp/2432798/forms/190237793851541410/subscribe";
+
+// ── PDF lead magnet → MailerLite (auto-sends the guide) ──
+function handleLMSubmit(e) {
+  e.preventDefault();
+  const form  = e.target;
+  const btn   = form.querySelector('.lm-btn');
+  const input = form.querySelector('.lm-input');
+  const email = input.value.trim();
+  if (!email) return;
+
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  const fd = new FormData();
+  fd.append('fields[email]', email);
+
+  fetch(MAILERLITE_URL, { method: 'POST', body: fd, mode: 'no-cors' })
+    .finally(() => {
+      btn.textContent = 'Check your inbox ✓';
+      btn.style.background = '#2E7D32'; btn.style.borderColor = '#2E7D32';
+      input.value = '';
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.textContent = 'Get the Guide →';
+        btn.style.background = ''; btn.style.borderColor = '';
+      }, 5000);
+    });
+}
+
+// ── Wholesale application → Google Sheets ──
+function handleWholesaleSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn  = form.querySelector('.form-submit');
+
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+
+  fetch(GOOGLE_SHEETS_URL, { method: 'POST', body: new FormData(form) })
+    .finally(() => {
+      btn.textContent = 'Application Submitted ✓';
+      btn.style.background = '#2E7D32'; btn.style.borderColor = '#2E7D32';
+      form.reset();
+      // Optional: also open WhatsApp so eager buyers can reach you instantly
+      setTimeout(() => {
+        window.open('https://wa.me/524439171366?text=Hi%20Terraloma%2C%20I%20just%20submitted%20my%20wholesale%20application%20through%20your%20website.', '_blank');
+      }, 1200);
+    });
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+</script>
+</body>
+</html>
