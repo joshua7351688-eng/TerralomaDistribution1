@@ -1094,17 +1094,12 @@ window.addEventListener('load', () => {
 });
 
 /* ═══════════════════════════════════════════
-   FORM ENDPOINTS — REPLACE BEFORE GOING LIVE
-   ─────────────────────────────────────────
-   1) GOOGLE_SHEETS_URL: paste the Web App URL you get
-      after deploying the Apps Script (see setup guide).
-   2) MAILERLITE_URL: paste the "action" URL from your
-      MailerLite embedded form (see setup guide).
+   FORM ENDPOINT — Google Apps Script
+   Handles both the wholesale form and the PDF form.
 ═══════════════════════════════════════════ */
-const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbzRmOWnklr-0mEcPQgzm5DNtxUxvEcQYbkDDBe_4StyEsvPTKw7Tf3ITxXd_UiKVwsl/exec";
-const MAILERLITE_URL    = "https://assets.mailerlite.com/jsonp/2432798/forms/190237793851541410/subscribe";
+const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbyhwW_gFYAlmNPZmXBki76Y1yULwx0J3iM-8sfDdmwyfrpF8Ha8OMvSttVe2a7PL5el/exec";
 
-// ── PDF lead magnet → MailerLite (auto-sends the guide) ──
+// ── PDF lead magnet → Google Apps Script (auto-sends the guide, no opt-in) ──
 function handleLMSubmit(e) {
   e.preventDefault();
   const form  = e.target;
@@ -1117,9 +1112,10 @@ function handleLMSubmit(e) {
   btn.textContent = 'Sending…';
 
   const fd = new FormData();
-  fd.append('fields[email]', email);
+  fd.append('formType', 'pdf');
+  fd.append('email', email);
 
-  fetch(MAILERLITE_URL, { method: 'POST', body: fd, mode: 'no-cors' })
+  fetch(GOOGLE_SHEETS_URL, { method: 'POST', body: fd })
     .finally(() => {
       btn.textContent = 'Check your inbox ✓';
       btn.style.background = '#2E7D32'; btn.style.borderColor = '#2E7D32';
@@ -1162,4 +1158,5 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 </script>
 </body>
 </html>
+
 
