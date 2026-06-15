@@ -485,14 +485,52 @@ a { color: inherit; text-decoration: none; }
   .proof-photo-strip { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 640px) {
-  .offer-grid, .catalog-grid { grid-template-columns: 1fr; }
+  /* ── Layout collapses ── */
+  .offer-grid { grid-template-columns: 1fr; }
+  .catalog-grid { grid-template-columns: 1fr 1fr; }   /* 2x2 keeps boots visible but compact */
   .footer-inner { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
-  .credibility-stats { grid-template-columns: 1fr; }
+  .credibility-stats { grid-template-columns: 1fr 1fr; }
   .hero-metric { border-right: none; margin-right: 0; padding-right: 0; }
   .proof-grid { grid-template-columns: 1fr; }
   .nav-links { display: none; }
-  .form-card { padding: 32px 24px; }
+
+  /* ── Compress vertical rhythm — the real mobile fix ── */
+  .credibility { padding: 56px 0; }
+  .problem, .offer, .catalog, .process, .proof, .wholesale { padding: 56px 0; }
+  .footer { padding: 48px 0 32px; }
+
+  .hero-content { padding: 96px 24px 40px; }
+  .hero-sub { font-size: 16px; margin-bottom: 28px; }
+  .hero-actions { gap: 12px; margin-bottom: 36px; }
+  .hero-actions .btn-primary, .hero-actions .btn-secondary { width: 100%; justify-content: center; }
+  .hero-metrics { gap: 20px 28px; padding-top: 24px; }
+  .hero-image-panel { height: 340px; padding: 24px; }
+  .hero-boot-img { max-height: 300px; }
+
+  /* Tighter cards & blocks */
+  .form-card { padding: 28px 22px; }
+  .offer-card { padding: 28px 24px; }
+  .testimonial-card { padding: 28px 24px; }
+  .problem-item { padding: 22px 0; gap: 16px; grid-template-columns: 36px 1fr; }
+  .problem-num { font-size: 24px; }
+  .process-steps { gap: 28px; }
+  .process-header { margin-bottom: 40px; }
+  .offer-header { margin-bottom: 36px; }
+  .catalog-header, .proof-header { margin-bottom: 32px; }
+  .leadmagnet-content { padding: 48px 24px; }
+  .proof-photo-strip { margin-top: 32px; }
+  .proof-photo { height: 150px; }
+
+  /* Smaller headlines so they don't eat the screen */
+  .section-headline { font-size: 32px; }
+  .credibility::before { font-size: 140px; }
+
+  /* Compact boot cards in 2x2 */
+  .boot-card-body { padding: 14px 14px 18px; }
+  .boot-card-name { font-size: 17px; }
+  .boot-card-desc { font-size: 12px; margin-bottom: 14px; }
+  .boot-card-footer { flex-direction: column; align-items: flex-start; gap: 8px; }
 }
 </style>
 </head>
@@ -1158,5 +1196,3 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 </script>
 </body>
 </html>
-
-
