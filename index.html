@@ -1169,6 +1169,7 @@ function handleLMSubmit(e) {
 
   fetch(GOOGLE_SHEETS_URL, { method: 'POST', body: fd })
     .finally(() => {
+       fbq('track', 'Lead');
       btn.textContent = 'Check your inbox ✓';
       btn.style.background = '#2E7D32'; btn.style.borderColor = '#2E7D32';
       input.value = '';
@@ -1191,6 +1192,7 @@ function handleWholesaleSubmit(e) {
 
   fetch(GOOGLE_SHEETS_URL, { method: 'POST', body: new FormData(form) })
     .finally(() => {
+       fbq('track', 'Lead', {content_name: 'wholesale_application'});
       btn.textContent = 'Application Submitted ✓';
       btn.style.background = '#2E7D32'; btn.style.borderColor = '#2E7D32';
       form.reset();
