@@ -3,1195 +3,808 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Terraloma Distribution — Wholesale Exotic Boots from León, Mexico</title>
+<title>Terraloma — The boots of your brand, handmade in León</title>
+<meta name="description" content="We make private-label boots with the look of exotic leather — designed with you, built for your brand alone. Handmade in León, México.">
+<meta property="og:title" content="We make the boots of your brand.">
+<meta property="og:description" content="Private-label boots with the look of exotic leather, designed with you and built for your label alone. Handmade in León, México.">
+<meta property="og:type" content="website">
+<!-- CAMBIAR al publicar: URL completa, ej. https://terralomadistribution.com/frames/desktop/frame-0053.webp -->
+<meta property="og:image" content="pc.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="pc.png" media="(min-width: 901px)">
+<link rel="preload" as="image" href="movil.png" media="(max-width: 900px)">
 
 <style>
-/* ═══════════════════════════════════════════
-   DESIGN TOKENS
-═══════════════════════════════════════════ */
-:root {
-  --col-bg:        #F7F5F1;
-  --col-surface:   #FFFFFF;
-  --col-panel:     #F0EDE7;
-  --col-panel-2:   #E8E3DC;
-  --col-border:    #E2DDD6;
-  --col-border-hi: #C8C0B4;
+  :root{
+    --paper:#F3E8D6;        /* arena clara: deja respirar al clip sin competirle */
+    --panel:#FBF6EC;        /* la sección elevada, un punto más clara */
+    --bone:#FBF6EC;         /* texto claro sobre superficie oscura */
+    --cream:#F2EBDD;
+    --tan:#C49A67; --tan-soft:#D8C09A;
+    --cognac:#965E30;
+    --cognac-ink:#7A4A22;   /* el mismo acento, legible a 12px sobre el fondo */
+    --clay:#6B4A2C; --espresso:#241A12; --taupe:#655540;
+    --line:#E3D7C0;
+    --serif:'Cormorant Garamond',Georgia,serif;
+    --sans:'Jost',system-ui,sans-serif;
+    --gutter:clamp(24px,6vw,96px);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--espresso);font-family:var(--sans);font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body.is-loading{overflow:hidden}
+  img{display:block;max-width:100%}
+  .wrap{max-width:680px;margin:0 auto;padding:0 26px}
+  @media(min-width:900px){.wrap{max-width:860px}}
+  section{position:relative}
+  .pad{padding:8vh 0}
+  :focus-visible{outline:2px solid var(--cognac-ink);outline-offset:3px}
 
-  --col-navy:      #1B2A4A;
-  --col-navy-mid:  #2E4270;
-  --col-navy-lite: #4A6298;
+  header{position:sticky;top:0;z-index:40;background:rgba(243,232,214,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s}
+  header.scrolled{border-color:var(--line)}
+  .bar{display:flex;align-items:center;justify-content:space-between;max-width:860px;margin:0 auto;padding:16px 26px}
+  .brand{font-family:var(--serif);font-weight:500;font-size:21px;letter-spacing:.22em;text-transform:uppercase;color:var(--espresso);text-decoration:none}
+  .loc{font-family:var(--sans);font-size:11px;letter-spacing:.14em;color:var(--taupe);text-transform:uppercase}
+  @media(max-width:520px){.loc{display:none}}
 
-  --col-ink:       #1A1A1A;
-  --col-text:      #2C2C2C;
-  --col-mid:       #6B6560;
-  --col-mute:      #9E9690;
-  --col-ghost:     #C8C0B4;
+  .eyebrow{font-size:12px;letter-spacing:.16em;color:var(--taupe);margin-bottom:22px}
+  h1,h2{font-family:var(--serif);font-weight:500;line-height:1.06;letter-spacing:-.01em;color:var(--espresso)}
+  h1{font-size:clamp(42px,11vw,80px)}
+  h2{font-size:clamp(30px,7.5vw,52px)}
+  .lead{font-weight:300;font-size:clamp(16px,4.2vw,19px);line-height:1.7;color:var(--clay);max-width:46ch;margin-top:26px}
+  .body{font-weight:300;font-size:clamp(15px,4vw,17px);line-height:1.75;color:var(--clay);max-width:48ch;margin-top:22px}
+  em,.it{font-style:italic}
 
-  --col-gold:      #B8922A;
-  --col-gold-lite: #D4AA4A;
+  /* ═══════════════════════════════════════════
+     HERO ESTÁTICO — la bota como imagen fija
+     (pc.png en desktop, movil.png en celular).
+     Desktop: copy a la izquierda | bota a la derecha (grid).
+     Móvil: bota de fondo, copy encima (stacked).
+  ═══════════════════════════════════════════ */
+  .hero-static{
+    position:relative;
+    background:var(--paper);
+    height:100vh;height:100svh;height:100dvh;
+    overflow:hidden;
+  }
+  .hero-boot{
+    position:absolute;top:0;bottom:0;right:0;
+    width:50%;
+    overflow:hidden;
+    background:var(--paper);
+  }
+  .hero-boot img{
+    display:block;width:100%;height:100%;
+    object-fit:cover;object-position:center;
+  }
+  .hero-copy{
+    position:relative;z-index:2;
+    display:flex;align-items:center;
+    height:100%;width:50%;
+    padding:0 clamp(28px,4vw,80px);
+  }
+  .hero-copy-inner{max-width:min(520px,100%)}
+  .hero-copy h1{
+    font-size:clamp(38px,5.6vw,66px);
+    text-wrap:balance;
+    margin-bottom:0;
+  }
 
-  --font-display: 'Libre Baskerville', Georgia, serif;
-  --font-body:    'Raleway', -apple-system, sans-serif;
+  @media(max-width:900px){
+    .hero-boot{
+      position:absolute;inset:0;
+      width:100%;
+      z-index:1;
+    }
+    .hero-boot img{object-position:center 55%}
+    .hero-copy{
+      position:relative;z-index:2;
+      display:block;
+      width:100%;
+      align-items:start;
+      padding:calc(env(safe-area-inset-top,0px) + 11vh) 26px 6vh;
+    }
+    .hero-copy-inner{max-width:none}
+    .hero-copy h1{font-size:clamp(38px,10vw,64px);text-wrap:balance}
+    .hero-copy .lead{font-size:16px;line-height:1.65;max-width:28ch}
+    .hero-copy .btn{margin-top:26px}
+  }
 
-  --max-w: 1140px;
-  --gutter: clamp(20px, 5vw, 80px);
-}
+  /* ═══════════════════════════════════════════
+     EL FILM — el scroll no baja la página,
+     adelanta el clip cuadro por cuadro.
+  ═══════════════════════════════════════════ */
+  .film{height:1180vh;background:var(--paper)}
+  .film-stage{position:sticky;top:0;height:100vh;height:100svh;height:100dvh;overflow:hidden;background:var(--paper)}
+  .film-inner{position:absolute;inset:0}
+  .film-inner canvas{display:block;width:100%;height:100%}
 
-/* ═══════════════════════════════════════════
-   RESET
-═══════════════════════════════════════════ */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--col-bg);
-  color: var(--col-ink);
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-img { display: block; max-width: 100%; }
-a { color: inherit; text-decoration: none; }
+  /* La bota ocupa 38%–68% del cuadro: los textos caen en la banda
+     libre de un lado o del otro, y se relevan conforme avanza la toma. */
+  .beat{
+    position:absolute;inset:0;z-index:2;
+    display:grid;align-items:center;
+    padding:12vh var(--gutter) 13vh;
+    opacity:0;pointer-events:none;
+    transition:opacity .7s ease;
+  }
+  .beat.is-on{opacity:1;pointer-events:auto}
+  .beat-inner{max-width:max(250px,31vw)}
+  .beat--left  .beat-inner{justify-self:start}
+  .beat--right .beat-inner{justify-self:end;max-width:max(220px,25vw)}
+  .beat h1,.beat h2{font-size:clamp(34px,3.9vw,58px)}
+  .beat .lead,.beat .body{font-size:clamp(15px,1.2vw,17px);margin-top:22px;max-width:none}
+  .beat .btn{margin-top:30px}
+  .beat--big .beat-inner{max-width:max(260px,30vw)}
+  .beat--big p{font-family:var(--serif);font-weight:500;font-size:clamp(34px,4.6vw,66px);line-height:1.04;letter-spacing:-.015em}
 
-/* ═══════════════════════════════════════════
-   UTILITY
-═══════════════════════════════════════════ */
-.container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--gutter); }
+  /* un lavado tenue del lado donde está el texto */
+  .beat::before{
+    content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
+  }
+  .beat--left::before{
+    background:linear-gradient(to right,rgba(243,232,214,.58) 0%,rgba(243,232,214,.26) 32%,rgba(243,232,214,0) 58%);
+  }
+  .beat--right::before{
+    background:linear-gradient(to left,rgba(243,232,214,.58) 0%,rgba(243,232,214,.26) 32%,rgba(243,232,214,0) 58%);
+  }
 
-.eyebrow {
-  display: inline-flex; align-items: center; gap: 12px;
-  font-family: var(--font-body); font-size: 11px; font-weight: 700;
-  letter-spacing: 0.22em; text-transform: uppercase; color: var(--col-navy);
-}
-.eyebrow::before {
-  content: ''; display: inline-block; width: 28px; height: 1px;
-  background: currentColor; flex-shrink: 0;
-}
+  /* copy con lista compacta (beat 6) y ancho un poco mayor para que respire */
+  .beat--wide .beat-inner{max-width:max(320px,34vw)}
+  .beat .trio-list{margin-top:20px;border-top:1px solid rgba(107,74,44,.34)}
+  .beat .trio-list .item{padding:14px 0;border-bottom:1px solid rgba(107,74,44,.34)}
+  .beat .trio-list h3{font-family:var(--serif);font-weight:500;font-size:clamp(17px,1.5vw,20px);color:var(--espresso);margin:0 0 3px}
+  .beat .trio-list p{font-size:14px;line-height:1.5;color:var(--clay);margin:0;max-width:none}
 
-.section-headline {
-  font-family: var(--font-display);
-  font-size: clamp(36px, 5vw, 56px);
-  font-weight: 700; color: var(--col-navy);
-  line-height: 1.1; letter-spacing: -0.02em;
-}
 
-.section-sub {
-  font-family: var(--font-body); font-size: 17px;
-  color: var(--col-mid); line-height: 1.75; max-width: 560px;
-}
+  .film-rail{
+    position:absolute;left:0;right:0;bottom:0;z-index:3;
+    padding:0 var(--gutter) 18px;
+    display:flex;align-items:flex-end;justify-content:space-between;gap:20px;
+    pointer-events:none;
+  }
+  .film-rail__track{position:absolute;left:0;right:0;bottom:0;height:1px;background:rgba(36,26,18,.14)}
+  .film-rail__fill{height:100%;background:var(--cognac);transform:scaleX(0);transform-origin:left}
+  .film-rail span{font-size:11.5px;font-weight:300;letter-spacing:.14em;color:var(--taupe)}
+  .film-rail .part{color:var(--clay)}
 
-.btn-primary {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: var(--col-navy); color: #fff;
-  font-family: var(--font-body); font-size: 11px; font-weight: 700;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  padding: 16px 36px; border: 2px solid var(--col-navy); border-radius: 0;
-  cursor: pointer; transition: background 0.2s, border-color 0.2s; white-space: nowrap;
-}
-.btn-primary:hover { background: var(--col-navy-mid); border-color: var(--col-navy-mid); }
+  /* ═══════════════════════════════════════════
+     CELULAR — su propia toma, en vertical.
+     El copy va sobre el video, sin cuadros de fondo.
+     Jerarquía clara: eyebrow chico, titular en serif medio,
+     cuerpo en línea larga, botón editorial en aro fino.
+  ═══════════════════════════════════════════ */
+  @media(max-width:1100px){
+    .film{height:1020vh}
+    .film-stage{height:100vh;height:100svh;height:100dvh}
+    .film-inner{position:absolute;inset:0;width:auto;height:auto;transform:none}
 
-.btn-secondary {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: transparent; color: var(--col-navy);
-  font-family: var(--font-body); font-size: 11px; font-weight: 700;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  padding: 14px 34px; border: 2px solid var(--col-navy); border-radius: 0;
-  cursor: pointer; transition: background 0.2s, color 0.2s; white-space: nowrap;
-}
-.btn-secondary:hover { background: var(--col-navy); color: #fff; }
+    /* el bloque respira: baja del borde superior y no llega al inferior */
+    .beat{
+      align-items:start;
+      padding:calc(env(safe-area-inset-top,0px) + 11vh) 30px 12vh;
+    }
+    .beat-inner,
+    .beat--right .beat-inner,
+    .beat--big .beat-inner{max-width:none;justify-self:stretch}
 
-/* ═══════════════════════════════════════════
-   SCROLL ANIMATIONS
-═══════════════════════════════════════════ */
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
-.reveal.visible { opacity: 1; transform: none; }
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
+    /* tipografía editorial — más chica, más aire, menos peso */
+    .beat .eyebrow{font-size:10.5px;letter-spacing:.24em}
+    .beat h1,.beat h2{font-size:26px;line-height:1.16;font-weight:500;letter-spacing:-.006em;max-width:20ch}
+    .beat .lead,.beat .body{font-size:14px;line-height:1.7;margin-top:16px;max-width:34ch;font-weight:300}
 
-/* ═══════════════════════════════════════════
-   NAV
-═══════════════════════════════════════════ */
-.nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  background: rgba(247,245,241,0.96); backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--col-border); transition: box-shadow 0.3s;
-}
-.nav.scrolled { box-shadow: 0 2px 20px rgba(27,42,74,0.08); }
+    /* botón — aro fino, tinta cognac, mayúsculas espaciadas */
+    .beat .btn{
+      margin-top:26px;padding:12px 22px;
+      background:transparent;color:var(--espresso);
+      border:1px solid rgba(36,26,18,.42);border-radius:999px;
+      font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:400;
+      align-self:start;width:auto;
+    }
+    .beat .btn:hover{background:var(--espresso);color:var(--bone);transform:none}
 
-.nav-inner {
-  max-width: var(--max-w); margin: 0 auto; padding: 0 var(--gutter);
-  height: 68px; display: flex; align-items: center; justify-content: space-between;
-}
+    /* velo suave en el hero — para que el eyebrow y la lead se lean sobre el aire de la toma */
+    .beat--left::before{
+      background:linear-gradient(to bottom,rgba(243,232,214,.72) 0%,rgba(243,232,214,.36) 42%,rgba(243,232,214,0) 72%);
+    }
+    /* beat 2: velo muy suave sólo en el tercio superior — sostiene el texto
+       sin oscurecer la bota. */
+    .beat--right .eyebrow{color:rgba(251,246,236,.9);text-shadow:0 1px 3px rgba(0,0,0,.65),0 0 14px rgba(0,0,0,.45)}
+    .beat--right h2{color:var(--bone);text-shadow:0 1px 3px rgba(0,0,0,.75),0 2px 22px rgba(0,0,0,.5)}
+    .beat--right .body{color:rgba(251,246,236,.96);text-shadow:0 1px 3px rgba(0,0,0,.7),0 2px 16px rgba(0,0,0,.5)}
+    .beat--right::before{
+      background:linear-gradient(to bottom,rgba(24,17,10,.26) 0%,rgba(24,17,10,.14) 36%,rgba(24,17,10,0) 66%);
+    }
 
-.nav-logo-text {
-  font-family: var(--font-display); font-size: 22px; font-weight: 700;
-  color: var(--col-navy); letter-spacing: 0.04em;
-}
+    /* beat 3: la frase de cierre baja al pie — velo suave desde abajo */
+    .beat--big{align-items:end}
+    .beat--big p{font-size:32px;line-height:1.1;font-weight:500;color:var(--bone);text-shadow:0 1px 3px rgba(0,0,0,.75),0 2px 18px rgba(0,0,0,.55)}
+    .beat--big.beat--left::before{
+      background:linear-gradient(to top,rgba(24,17,10,.30) 0%,rgba(24,17,10,.14) 34%,rgba(24,17,10,0) 66%);
+    }
 
-.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
-.nav-links a {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--col-mid); transition: color 0.2s;
-}
-.nav-links a:hover { color: var(--col-navy); }
+    /* copy 4-7: velo mínimo sólo donde vive el copy (arriba).
+       De la mitad para abajo la bota queda tal cual, sin filtro. */
+    .beat--content::before{
+      background:linear-gradient(to bottom,rgba(24,17,10,.24) 0%,rgba(24,17,10,.12) 34%,rgba(24,17,10,0) 60%) !important;
+    }
+    .beat--content .eyebrow{color:rgba(251,246,236,.82);text-shadow:0 1px 3px rgba(0,0,0,.7),0 0 14px rgba(0,0,0,.5)}
+    .beat--content h2, .beat--content h3{color:var(--bone);text-shadow:0 1px 3px rgba(0,0,0,.75),0 2px 22px rgba(0,0,0,.55),0 0 1px rgba(0,0,0,.4)}
+    .beat--content .body, .beat--content p{color:rgba(251,246,236,.95);text-shadow:0 1px 3px rgba(0,0,0,.75),0 2px 16px rgba(0,0,0,.55)}
+    .beat--content .trio-list{border-top-color:rgba(251,246,236,.26);margin-top:20px}
+    .beat--content .trio-list .item{border-bottom-color:rgba(251,246,236,.26);padding:12px 0}
+    .beat--content .trio-list h3{color:var(--bone);text-shadow:0 1px 3px rgba(0,0,0,.75),0 2px 18px rgba(0,0,0,.55);font-size:15px;margin-bottom:2px}
+    .beat--content .trio-list p{color:rgba(251,246,236,.92);text-shadow:0 1px 3px rgba(0,0,0,.75),0 2px 14px rgba(0,0,0,.55);font-size:13px;line-height:1.55}
 
-.nav-cta {
-  font-family: var(--font-body); font-size: 11px; font-weight: 700;
-  letter-spacing: 0.18em; text-transform: uppercase; color: #fff;
-  background: var(--col-navy); padding: 10px 24px; border: 2px solid var(--col-navy);
-  transition: background 0.2s; cursor: pointer; border-radius: 0;
-}
-.nav-cta:hover { background: var(--col-navy-mid); border-color: var(--col-navy-mid); }
 
-/* ═══════════════════════════════════════════
-   01 — HERO
-═══════════════════════════════════════════ */
-.hero {
-  padding-top: 68px; min-height: 100vh;
-  display: grid; grid-template-columns: 1fr 1fr;
-  align-items: center; background: var(--col-bg);
-  overflow: hidden; position: relative;
-}
-.hero::after {
-  content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 50%;
-  background: var(--col-panel); z-index: 0;
-}
+    /* el pie del cuadro es cuero de principio a fin: el riel se aclara.
+       Sin la barra oscura del fondo — el video queda limpio hasta abajo. */
+    .film-rail{padding-bottom:22px}
+    .film-rail::after{display:none}
+    .film-rail span{color:rgba(251,246,236,.78)}
+    .film-rail .part{color:var(--bone)}
+    .film-rail__track{background:rgba(251,246,236,.24)}
+    .film-rail__fill{background:var(--bone)}
+  }
 
-.hero-content {
-  padding: 80px var(--gutter) 80px clamp(20px, 5vw, 80px);
-  max-width: 680px; margin-left: auto; position: relative; z-index: 1;
-}
+  @media(max-width:780px){
+    .film-rail span:first-of-type{display:none}
 
-.hero-headline {
-  font-family: var(--font-display);
-  font-size: clamp(44px, 5.5vw, 76px); font-weight: 700;
-  color: var(--col-navy); line-height: 1.04; letter-spacing: -0.02em; margin-bottom: 28px;
-}
-.hero-headline em { font-weight: 400; font-style: italic; color: var(--col-mid); display: block; }
+    /* en celular las secciones respiran demasiado: 14vh+14vh entre bloques
+       son 227px muertos con 812 de alto. Se aprieta sin quitar aire. */
+    .pad{padding:44px 0}
+    .statement{padding:60px 0}
+    footer{padding:40px 0 32px}
 
-.hero-sub { font-size: 18px; color: var(--col-mid); line-height: 1.75; max-width: 480px; margin-bottom: 40px; }
+    /* las láminas también se reducen: en móvil pesan mucho */
+    .plate{max-width:100%}
+    [style*="margin-top:38px"]{margin-top:24px !important}
+    [style*="margin-top:40px"]{margin-top:24px !important}
+  }
 
-.hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 56px; }
+  /* ═══════════════════════════════════════════
+     LOADER
+  ═══════════════════════════════════════════ */
+  .loader{position:fixed;inset:0;z-index:200;background:var(--paper);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;transition:opacity .8s ease}
+  .loader.is-done{opacity:0;pointer-events:none}
+  .loader .mark{font-family:var(--serif);font-size:20px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--espresso)}
+  .loader .track{width:min(210px,45vw);height:1px;background:rgba(36,26,18,.14);overflow:hidden}
+  .loader .fill{height:100%;background:var(--tan);transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
+  .loader .meta{display:flex;gap:14px;font-size:11px;letter-spacing:.14em;color:var(--taupe)}
 
-.hero-metrics {
-  display: flex; gap: 0; border-top: 1px solid var(--col-border);
-  padding-top: 36px; flex-wrap: wrap;
-}
-.hero-metric { padding-right: 32px; margin-right: 32px; border-right: 1px solid var(--col-border); }
-.hero-metric:last-child { border-right: none; margin-right: 0; padding-right: 0; }
-.hero-metric-num { font-family: var(--font-display); font-size: 34px; font-weight: 700; color: var(--col-navy); line-height: 1; }
-.hero-metric-label { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--col-mute); margin-top: 4px; }
+  /* ═══════════════════════════════════════════
+     PLACAS DE FOTO
+  ═══════════════════════════════════════════ */
+  .plate{position:relative;border-radius:4px;overflow:hidden;width:100%;max-width:480px;aspect-ratio:4/5;background-position:center;background-size:cover;background-color:var(--tan-soft)}
+  .plate.wide{aspect-ratio:16/10}
+  .plate::after{content:'';position:absolute;left:0;right:0;bottom:0;height:38%;background:linear-gradient(to top,rgba(36,26,18,.42),rgba(36,26,18,0))}
+  .plate .cap{position:absolute;left:16px;bottom:14px;z-index:2;font-family:var(--serif);font-style:italic;font-size:17px;color:var(--bone);text-shadow:0 1px 8px rgba(0,0,0,.28)}
+  .p-hands{background-image:url('brands/workshop-bench.webp')}
+  .p-bench{background-image:url('brands/plate-bench.webp')}
+  /* la suela va completa y sin fondo: el marco toma su misma
+     proporción para que no se recorte nada */
+  .p-finished{
+    background-image:url('brands/plate-yourbrand.webp');
+    background-size:contain;background-repeat:no-repeat;
+    background-color:transparent;border-radius:0;
+    aspect-ratio:752/1344;max-width:340px
+  }
+  .p-finished::after{display:none}
+  .p-finished .cap{color:var(--clay);text-shadow:none}
 
-.hero-image-panel {
-  position: relative; z-index: 1; height: 100vh;
-  display: flex; align-items: center; justify-content: center;
-  padding: 40px var(--gutter) 40px 40px;
-}
+  .statement{padding:11vh 0;text-align:center}
+  .statement p{font-family:var(--serif);font-weight:500;font-size:clamp(36px,10vw,82px);line-height:1.02;letter-spacing:-.015em;max-width:14ch;margin:0 auto}
 
-.hero-boot-img {
-  max-height: 78vh; width: auto; max-width: 100%; object-fit: contain;
-  filter:
-    drop-shadow(0 40px 32px rgba(27,42,74,0.22))
-    drop-shadow(0 8px 12px rgba(27,42,74,0.18))
-    drop-shadow(2px 2px 0px rgba(27,42,74,0.08));
-  animation: float 6s ease-in-out infinite;
-}
-@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+  .trio{margin-top:44px;border-top:1px solid var(--line)}
+  .trio .item{padding:26px 0;border-bottom:1px solid var(--line)}
+  .trio h3{font-family:var(--serif);font-weight:500;font-size:clamp(22px,5.5vw,28px);color:var(--espresso);margin-bottom:8px}
+  .trio p{font-weight:300;font-size:15px;line-height:1.7;color:var(--clay);max-width:44ch}
 
-/* ═══════════════════════════════════════════
-   02 — CREDIBILITY
-═══════════════════════════════════════════ */
-.credibility {
-  background: var(--col-navy); padding: 96px 0;
-  position: relative; overflow: hidden;
-}
-.credibility::before {
-  content: 'LEÓN'; position: absolute;
-  font-family: var(--font-display); font-size: 240px; font-weight: 700;
-  color: rgba(255,255,255,0.03); right: -20px; top: 50%; transform: translateY(-50%);
-  letter-spacing: -0.04em; pointer-events: none; white-space: nowrap;
-}
+  .proof{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .proof .eyebrow{color:var(--cognac-ink)}
+  .proof .quote{font-family:var(--serif);font-weight:500;font-size:clamp(26px,6.5vw,40px);line-height:1.18;max-width:22ch}
 
-.credibility-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .apply{background:var(--cognac);color:var(--bone)}
+  .apply h2{color:var(--bone)}
+  .apply .lead{color:#F1E5D3}
+  form{margin-top:38px;max-width:520px}
+  .field{margin-bottom:22px}
+  .field label{display:block;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(251,246,236,.72);margin-bottom:10px}
+  .field input,.field select,.field textarea{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(251,246,236,.32);color:var(--bone);font-family:var(--sans);font-size:16px;font-weight:300;padding:12px 2px;outline:none;transition:border-color .3s}
+  .field input::placeholder,.field textarea::placeholder{color:rgba(251,246,236,.42)}
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--bone)}
+  .field select{
+    appearance:none;-webkit-appearance:none;-moz-appearance:none;cursor:pointer;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 12 8%27 fill=%27none%27 stroke=%27%23FBF6EC%27 stroke-width=%271.4%27 stroke-linecap=%27round%27><path d=%27M1 1l5 5 5-5%27/></svg>");
+    background-repeat:no-repeat;background-position:right 4px center;background-size:12px 8px;
+    padding-right:28px;
+  }
+  .field select option{background:var(--bone);color:var(--espresso);font-weight:400;padding:12px}
+  .field select:invalid{color:rgba(251,246,236,.42)}
+  .field textarea{resize:vertical;min-height:84px}
+  /* custom select — reemplaza el popup nativo del navegador por un panel editorial */
+  .cs{position:relative}
+  .cs > select{position:absolute;left:0;top:100%;width:1px;height:1px;opacity:0;pointer-events:none}
+  .cs-trigger{
+    width:100%;background:transparent;border:none;border-bottom:1px solid rgba(251,246,236,.32);
+    color:var(--bone);font-family:var(--sans);font-size:16px;font-weight:300;
+    padding:12px 28px 12px 2px;outline:none;cursor:pointer;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    transition:border-color .3s;text-align:left;
+  }
+  .cs-trigger:focus,.cs.open .cs-trigger{border-color:var(--bone)}
+  .cs-trigger.placeholder .cs-value{color:rgba(251,246,236,.42)}
+  .cs-trigger .cs-chevron{width:12px;height:8px;flex:none;transition:transform .3s;color:var(--bone)}
+  .cs.open .cs-trigger .cs-chevron{transform:rotate(180deg)}
+  .cs-panel{
+    position:absolute;top:calc(100% + 10px);left:0;right:0;z-index:20;
+    background:var(--bone);border-radius:4px;padding:6px 0;
+    opacity:0;visibility:hidden;transform:translateY(-6px);
+    transition:opacity .25s cubic-bezier(.2,.6,.2,1),transform .25s cubic-bezier(.2,.6,.2,1),visibility .25s;
+    box-shadow:0 12px 48px rgba(36,26,18,.26);
+    max-height:300px;overflow-y:auto;
+  }
+  .cs.open .cs-panel{opacity:1;visibility:visible;transform:none}
+  .cs-option{
+    padding:12px 22px;font-family:var(--sans);font-size:15px;font-weight:400;
+    color:var(--espresso);cursor:pointer;letter-spacing:.01em;
+    transition:background .15s,color .15s;
+  }
+  .cs-option:hover,.cs-option.active{background:rgba(107,74,44,.09);color:var(--cognac-ink)}
+  .cs-option.selected{color:var(--cognac-ink);font-weight:500}
+  .submit{display:inline-flex;align-items:center;gap:14px;font-family:var(--sans);font-size:12px;font-weight:400;letter-spacing:.24em;text-transform:uppercase;background:transparent;color:var(--bone);padding:16px 36px;border:1px solid rgba(251,246,236,.65);border-radius:999px;cursor:pointer;transition:background .3s,color .3s,border-color .3s,transform .2s;margin-top:18px}
+  .submit::after{content:"";width:16px;height:1px;background:currentColor;transition:width .3s}
+  .submit:hover{background:var(--bone);color:var(--espresso);border-color:var(--bone);transform:none}
+  .submit:hover::after{width:24px}
+  .submit:disabled{opacity:.55;cursor:not-allowed}
+  .backup{margin-top:26px;font-size:14px;color:#EAD9C2}
+  .backup a{color:var(--bone);text-decoration:underline;text-underline-offset:3px}
+  .form-done{display:none;font-family:var(--serif);font-size:clamp(22px,5vw,30px);line-height:1.3;margin-top:30px}
+  .hp{position:absolute;left:-9999px}
+  /* ─── lámina editorial que acompaña cada bloque de copy ─── */
+  .plate{position:relative;overflow:hidden;border-radius:2px;background:var(--tan-soft);width:100%;display:block;margin:0}
+  .plate img{display:block;width:100%;height:100%;object-fit:cover}
+  .plate--sole{background:transparent;border-radius:0;aspect-ratio:447/430;max-width:340px;margin-left:auto;margin-right:auto}
+  .plate--sole img{object-fit:contain}
 
-.credibility-headline {
-  font-family: var(--font-display); font-size: clamp(32px, 4vw, 52px); font-weight: 700;
-  color: #fff; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 24px;
-}
-.credibility-headline em { font-style: italic; font-weight: 400; color: rgba(255,255,255,0.5); }
+  /* el PNG viene con fondo pintado (pared + piso). Estrategia:
+       1. Recortar el marco a la zona donde vive la bota (aspect-ratio + cover):
+          el "piso" y la "pared" quedan fuera del cuadro antes de dibujar.
+       2. mix-blend-mode:multiply sobre lo que queda: el cremita leve que aún
+          entra al recorte se funde con el --paper y desaparece.
+       3. brightness eleva el fondo del PNG cerca de blanco para que multiply
+          lo elimine limpiamente sin manchar el resto.
+       4. mask-image linear: por si algún borde asoma, un fade suave abajo/arriba
+          lo apaga a transparente.
+     La sombra se dibuja con drop-shadow en el contenedor: sigue la silueta
+     visible ya recortada. */
+  /* clave: el contenedor debe tener SU PROPIO fondo cremita — así el
+     mix-blend-mode:multiply de la img se funde contra ese fondo
+     (que es idéntico al --paper de la página), y el fondo del PNG
+     desaparece limpiamente. También aísla el stacking context. */
+  /* El PNG ya viene con fondo transparente y sombra propia horneada. No hay
+     que hacer trucos: fondo del contenedor transparente, la imagen a su
+     aspecto natural, y con un drop-shadow que sigue la silueta real. */
+  .plate.plate--boot,
+  .plate.plate--sole{
+    background:transparent;
+    border-radius:0;
+    max-width:520px;
+    margin:0 auto;
+    aspect-ratio:auto;
+    height:auto;
+    overflow:visible;
+    position:relative;
+    filter:
+      drop-shadow(0 22px 26px rgba(36,26,18,.22))
+      drop-shadow(0 8px 12px rgba(36,26,18,.14));
+  }
+  .pad--split .plate.plate--boot,
+  .pad--split .plate.plate--sole{aspect-ratio:auto}
+  .plate--boot img,
+  .plate--sole img{
+    display:block;
+    width:100%;
+    height:auto;
+    object-fit:initial;
+  }
 
-.credibility-body { font-size: 17px; color: rgba(255,255,255,0.6); line-height: 1.8; margin-bottom: 28px; }
 
-.credibility-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); }
-.cred-stat { background: var(--col-navy); padding: 28px 24px; transition: background 0.2s; }
-.cred-stat:hover { background: var(--col-navy-mid); }
-.cred-stat-num { font-family: var(--font-display); font-size: 38px; font-weight: 700; color: #fff; line-height: 1; margin-bottom: 8px; }
-.cred-stat-num span { color: var(--col-gold-lite); }
-.cred-stat-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); line-height: 1.5; }
 
-.cred-process-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
-.cred-img-block { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); overflow: hidden; position: relative; height: 165px; }
-.cred-img-block img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
-.cred-img-placeholder {
-  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-  font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.2);
-}
-.cred-img-label {
-  position: absolute; bottom: 0; left: 0; right: 0; padding: 8px 14px;
-  background: linear-gradient(transparent, rgba(0,0,0,0.55));
-  font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.8);
-}
+  /* ═══════════════════════════════════════════
+     ESCRITORIO — layout editorial:
+     eyebrow + titular en columna izquierda, cuerpo en columna
+     derecha alineado a la primera línea del titular. El trío se
+     abre en tres columnas. Statement, proof y apply se centran.
+  ═══════════════════════════════════════════ */
+  @media(min-width:900px){
+    .wrap{max-width:min(1180px,92vw);padding:0 40px}
 
-/* ═══════════════════════════════════════════
-   03 — THE PROBLEM
-═══════════════════════════════════════════ */
-.problem { padding: 100px 0; background: var(--col-bg); }
-.problem-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-.problem-header { position: sticky; top: 100px; }
+    .pad{padding:14vh 0}
+    .pad>.wrap{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      column-gap:56px;
+      row-gap:0;
+      align-items:baseline;
+    }
+    .pad .eyebrow{grid-column:1/7;margin:0 0 24px;color:var(--taupe)}
+    .pad h2{
+      grid-column:1/8;
+      margin:0;
+      font-size:clamp(40px,4.2vw,64px);
+      line-height:1.05;letter-spacing:-.012em;
+      max-width:none;
+    }
+    .pad .body,.pad .lead{
+      grid-column:7/13;
+      margin:0;
+      max-width:none;
+      font-size:16px;line-height:1.72;
+      align-self:end;
+      padding-bottom:.55em;
+    }
+    /* si un beat--pad no tiene eyebrow (Your design), el titular sigue igual,
+       y el cuerpo se acomoda a la derecha */
 
-.problem-list { display: flex; flex-direction: column; gap: 0; }
-.problem-item {
-  padding: 32px 0; border-bottom: 1px solid var(--col-border);
-  display: grid; grid-template-columns: 48px 1fr; gap: 24px; align-items: start;
-}
-.problem-item:first-child { border-top: 1px solid var(--col-border); }
-.problem-num { font-family: var(--font-display); font-size: 32px; font-weight: 700; color: var(--col-border-hi); line-height: 1; padding-top: 4px; }
-.problem-title { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--col-navy); margin-bottom: 10px; line-height: 1.25; }
-.problem-body { font-size: 15px; color: var(--col-mid); line-height: 1.7; }
+    /* trío: rompe la cuadrícula estrecha y ocupa las 12 columnas,
+       tres tarjetas horizontales con línea superior */
+    .pad .trio{
+      grid-column:1/13;
+      margin-top:64px;
+      display:grid;grid-template-columns:repeat(3,1fr);gap:44px;
+      border-top:1px solid var(--line);
+      padding-top:36px;
+    }
+    .pad .trio .item{border:none;padding:0}
+    .pad .trio h3{font-size:clamp(20px,1.7vw,24px);margin-bottom:10px}
+    .pad .trio p{font-size:15px;line-height:1.6;max-width:none}
 
-/* ═══════════════════════════════════════════
-   04 — WHAT WE OFFER
-═══════════════════════════════════════════ */
-.offer { background: var(--col-panel); padding: 100px 0; }
-.offer-header { text-align: center; max-width: 600px; margin: 0 auto 64px; }
-.offer-header .eyebrow { justify-content: center; margin-bottom: 20px; }
-.offer-header .eyebrow::before { display: none; }
+    /* statement — más presencia, más aire */
+    .statement{padding:18vh 0}
+    .statement p{font-size:clamp(56px,6.6vw,96px);max-width:16ch;letter-spacing:-.018em}
 
-.offer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--col-border); background: var(--col-border); }
-.offer-card { background: var(--col-surface); padding: 40px 36px; display: flex; flex-direction: column; gap: 16px; transition: background 0.2s; }
-.offer-card:hover { background: #FDFCFA; }
-.offer-icon { width: 48px; height: 48px; background: var(--col-navy); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.offer-icon svg { width: 22px; height: 22px; fill: none; stroke: #fff; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-.offer-card-title { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--col-navy); line-height: 1.2; }
-.offer-card-body { font-size: 15px; color: var(--col-mid); line-height: 1.7; flex: 1; }
-.offer-tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-.offer-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--col-navy); background: var(--col-panel); border: 1px solid var(--col-border); padding: 4px 10px; }
+    /* proof — cita centrada, sobre el panel crema */
+    .proof.pad{padding:16vh 0}
+    .proof>.wrap{display:block;text-align:center;max-width:min(880px,92vw)}
+    .proof .eyebrow{margin:0 auto 32px}
+    .proof .quote{max-width:26ch;margin:0 auto;text-align:center;font-size:clamp(34px,3.4vw,48px)}
+    .proof .body{max-width:56ch;margin:28px auto 0;text-align:center}
 
-/* ═══════════════════════════════════════════
-   05 — CATALOG
-═══════════════════════════════════════════ */
-.catalog { padding: 100px 0; background: var(--col-bg); }
-.catalog-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; flex-wrap: wrap; gap: 24px; }
+    /* apply — todo centrado, formulario contenido con sus campos */
+    .apply.pad{padding:16vh 0}
+    .apply>.wrap{display:block;text-align:center;max-width:min(720px,92vw)}
+    .apply h2{max-width:22ch;margin:0 auto 24px;font-size:clamp(44px,4.6vw,66px)}
+    .apply .lead{max-width:44ch;margin:0 auto;font-size:17px}
+    .apply form{margin:56px auto 0;max-width:560px;text-align:left}
+    .apply .backup{margin-top:32px;text-align:center}
+    .apply .form-done{text-align:center;margin-top:36px}
 
-.catalog-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--col-border); background: var(--col-border); }
+    /* ─── split editorial: imagen a un lado, texto al otro ─── */
+    .pad--split>.wrap{align-items:start}
+    .pad--split .plate{
+      grid-column:1/6;
+      grid-row:1/span 5;
+      aspect-ratio:4/5;
+      align-self:center;
+    }
+    .pad--split .eyebrow{grid-column:7/13;margin:0 0 24px}
+    .pad--split h2{grid-column:7/13;margin:0}
+    .pad--split .body{grid-column:7/13;margin:26px 0 0;padding:0;align-self:auto}
 
-.boot-card { background: var(--col-surface); cursor: pointer; position: relative; overflow: hidden; transition: box-shadow 0.3s; display: flex; flex-direction: column; }
-.boot-card:hover { box-shadow: 0 12px 40px rgba(27,42,74,0.12); z-index: 1; }
-.boot-card-img { width: 100%; aspect-ratio: 3/4; background: var(--col-panel); overflow: hidden; position: relative; }
-.boot-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-.boot-card:hover .boot-card-img img { transform: scale(1.04); }
-.boot-card-img-placeholder { width: 100%; height: 100%; display: flex; align-items: flex-end; justify-content: flex-start; padding: 16px; }
-.boot-badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #fff; background: var(--col-navy); padding: 5px 10px; }
-.boot-card-body { padding: 20px 24px 28px; flex: 1; display: flex; flex-direction: column; }
-.boot-card-material { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--col-mute); margin-bottom: 6px; }
-.boot-card-name { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--col-navy); line-height: 1.2; margin-bottom: 8px; }
-.boot-card-desc { font-size: 13px; color: var(--col-mid); line-height: 1.65; flex: 1; margin-bottom: 20px; }
-.boot-card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; border-top: 1px solid var(--col-border); }
-.boot-card-moq { font-size: 11px; color: var(--col-mute); font-weight: 600; }
-.boot-card-moq strong { color: var(--col-navy); }
-.boot-card-cta { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--col-navy); border-bottom: 1px solid var(--col-navy); padding-bottom: 1px; transition: color 0.2s; }
-.boot-card-cta:hover { color: var(--col-navy-mid); }
+    /* imagen a la derecha (secciones pares) */
+    .pad--split.pad--image-right .plate{grid-column:8/13}
+    .pad--split.pad--image-right .eyebrow{grid-column:1/7}
+    .pad--split.pad--image-right h2{grid-column:1/7}
+    .pad--split.pad--image-right .body{grid-column:1/7}
 
-/* ═══════════════════════════════════════════
-   06 — PROCESS
-═══════════════════════════════════════════ */
-.process { background: var(--col-navy); padding: 100px 0; position: relative; overflow: hidden; }
-.process-header { text-align: center; max-width: 580px; margin: 0 auto 72px; }
+    /* la suela va sin recortarse, más chica y centrada en su columna */
+    .pad--split .plate--sole{
+      aspect-ratio:447/430;max-width:420px;
+      align-self:center;justify-self:center;
+    }
 
-.process-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; position: relative; }
-.process-steps::before {
-  content: ''; position: absolute; top: 40px;
-  left: calc(16.66% + 20px); right: calc(16.66% + 20px);
-  height: 1px; background: rgba(255,255,255,0.15); z-index: 0;
-}
-.process-step { padding: 0 40px; text-align: center; position: relative; z-index: 1; }
-.process-step-num {
-  width: 80px; height: 80px; background: var(--col-navy-mid);
-  border: 2px solid rgba(255,255,255,0.15);
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 28px;
-  font-family: var(--font-display); font-size: 28px; font-weight: 700; color: #fff;
-  transition: background 0.3s;
-}
-.process-step:hover .process-step-num { background: rgba(255,255,255,0.15); }
-.process-step-title { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 16px; line-height: 1.2; }
-.process-step-body { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.75; }
-.process-step-body strong { color: rgba(255,255,255,0.9); font-weight: 600; }
-.process-cta { text-align: center; margin-top: 64px; }
+    /* trío dentro de un split: se apila vertical con líneas divisorias */
+    .pad--split .trio{
+      grid-column:7/13;margin-top:36px;
+      display:block;border-top:1px solid var(--line);padding-top:0;
+    }
+    .pad--split.pad--image-right .trio{grid-column:1/7}
+    .pad--split .trio .item{
+      padding:18px 0;border-bottom:1px solid var(--line);
+    }
+    .pad--split .trio h3{font-size:clamp(19px,1.5vw,22px);margin-bottom:6px}
+    .pad--split .trio p{font-size:15px;line-height:1.55;max-width:none}
 
-/* ═══════════════════════════════════════════
-   07 — SOCIAL PROOF
-═══════════════════════════════════════════ */
-.proof { padding: 100px 0; background: var(--col-bg); }
-.proof-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 56px; flex-wrap: wrap; gap: 24px; }
-.proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  }
 
-.testimonial-card { background: var(--col-surface); border: 1px solid var(--col-border); padding: 36px 32px; position: relative; transition: box-shadow 0.3s, border-color 0.3s; }
-.testimonial-card:hover { box-shadow: 0 8px 32px rgba(27,42,74,0.08); border-color: var(--col-border-hi); }
-.testimonial-card::before {
-  content: '\201C'; font-family: var(--font-display); font-size: 100px;
-  color: var(--col-navy); opacity: 0.06; position: absolute; top: 8px; left: 24px; line-height: 1; pointer-events: none;
-}
-.testimonial-stars { display: flex; gap: 3px; margin-bottom: 20px; }
-.star { color: var(--col-gold); font-size: 14px; }
-.testimonial-body { font-family: var(--font-display); font-size: 16px; font-style: italic; color: var(--col-text); line-height: 1.75; margin-bottom: 28px; position: relative; z-index: 1; }
-.testimonial-author { display: flex; align-items: center; gap: 14px; padding-top: 24px; border-top: 1px solid var(--col-border); }
-.testimonial-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--col-navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 18px; font-weight: 700; flex-shrink: 0; }
-.testimonial-name { font-size: 14px; font-weight: 700; color: var(--col-navy); letter-spacing: 0.02em; }
-.testimonial-role { font-size: 11px; color: var(--col-mute); letter-spacing: 0.06em; margin-top: 2px; font-weight: 500; }
 
-.proof-photo-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--col-border); background: var(--col-border); margin-top: 64px; }
-.proof-photo { position: relative; overflow: hidden; height: 220px; background: var(--col-panel); }
-.proof-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-.proof-photo:hover img { transform: scale(1.05); }
-.proof-photo-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--col-mute); }
-.proof-photo-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 12px 16px; background: linear-gradient(transparent, rgba(27,42,74,0.7)); font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.9); }
 
-/* ═══════════════════════════════════════════
-   08 — LEAD MAGNET
-═══════════════════════════════════════════ */
-.leadmagnet { background: var(--col-panel); border-top: 1px solid var(--col-border); border-bottom: 1px solid var(--col-border); }
-.leadmagnet-inner { display: grid; grid-template-columns: 1fr 1fr; min-height: 480px; }
-.leadmagnet-content {
-  padding: 80px var(--gutter) 80px clamp(20px, 5vw, 80px);
-  max-width: 560px; margin-left: auto; display: flex; flex-direction: column; justify-content: center;
-}
-.leadmagnet-headline { font-family: var(--font-display); font-size: clamp(28px, 3.5vw, 44px); font-weight: 700; color: var(--col-navy); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
-.leadmagnet-sub { font-size: 16px; color: var(--col-mid); line-height: 1.75; margin-bottom: 28px; }
-.leadmagnet-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
-.leadmagnet-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--col-mid); font-weight: 500; }
-.leadmagnet-list li::before { content: '✓'; color: var(--col-navy); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
-.lm-form { display: flex; gap: 0; flex-wrap: wrap; }
-.lm-input { flex: 1; min-width: 200px; background: #fff; border: 2px solid var(--col-border-hi); border-right: none; color: var(--col-text); font-family: var(--font-body); font-size: 14px; padding: 14px 18px; outline: none; transition: border-color 0.2s; }
-.lm-input::placeholder { color: var(--col-ghost); }
-.lm-input:focus { border-color: var(--col-navy); }
-.lm-btn { background: var(--col-navy); color: #fff; font-family: var(--font-body); font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 14px 28px; border: 2px solid var(--col-navy); cursor: pointer; transition: background 0.2s; white-space: nowrap; }
-.lm-btn:hover { background: var(--col-navy-mid); }
-.lm-note { font-size: 11px; color: var(--col-mute); margin-top: 12px; letter-spacing: 0.04em; }
+  .btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-size:15px;background:var(--espresso);color:var(--bone);padding:15px 28px;border-radius:2px;text-decoration:none;transition:background .25s,transform .25s;margin-top:36px}
+  .btn.btn--ghost{background:transparent;color:var(--espresso);padding:10px 0;border-bottom:1px solid var(--espresso);border-radius:0}
+  .btn.btn--ghost:hover{background:transparent;color:var(--cognac-ink);border-color:var(--cognac-ink);transform:none}
+  .btn:hover{background:var(--clay);transform:translateY(-1px)}
 
-.leadmagnet-visual { background: var(--col-navy); display: flex; align-items: center; justify-content: center; padding: 60px 40px; position: relative; overflow: hidden; }
-.leadmagnet-visual::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--col-navy-mid) 0%, var(--col-navy) 60%); }
+  .float{position:fixed;right:18px;bottom:18px;z-index:50;display:inline-flex;align-items:center;gap:9px;background:var(--espresso);color:var(--bone);padding:13px 18px;border-radius:40px;text-decoration:none;font-size:14px;box-shadow:0 6px 22px rgba(36,26,18,.28);transition:transform .25s,background .25s}
+  .float:hover{transform:translateY(-2px);background:var(--clay)}
+  .float svg{width:19px;height:19px;fill:currentColor}
+  @media(max-width:520px){.float span{display:none}.float{padding:14px;border-radius:50%}}
 
-.pdf-mockup { position: relative; z-index: 1; width: 230px; background: #fff; box-shadow: 0 24px 64px rgba(0,0,0,0.4); transform: rotate(-3deg); transition: transform 0.3s; }
-.pdf-mockup:hover { transform: rotate(0deg) scale(1.02); }
-.pdf-mockup-header { background: var(--col-navy); padding: 18px 22px 14px; }
-.pdf-mockup-logo { font-family: var(--font-display); font-size: 14px; font-weight: 700; color: #fff; letter-spacing: 0.04em; margin-bottom: 4px; }
-.pdf-mockup-title { font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
-.pdf-mockup-body { padding: 18px 22px 22px; display: flex; flex-direction: column; gap: 8px; }
-.pdf-line { height: 7px; background: var(--col-panel-2); border-radius: 2px; }
-.pdf-line-short { width: 55%; } .pdf-line-med { width: 78%; } .pdf-line-full { width: 100%; }
-.pdf-img-block { height: 72px; background: var(--col-panel); border: 1px solid var(--col-border); margin: 2px 0; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--col-mute); }
-.pdf-tag { position: absolute; top: -10px; right: -10px; background: var(--col-gold); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 11px; transform: rotate(3deg); }
+  @media(max-width:899px){
+    /* móvil: la lámina va debajo del texto, ancho completo */
+    .pad--split .plate{margin-top:36px;aspect-ratio:4/5}
+    .pad--split .plate--sole{margin-top:36px;aspect-ratio:447/430;max-width:300px}
+  }
 
-/* ═══════════════════════════════════════════
-   09 — WHOLESALE FORM
-═══════════════════════════════════════════ */
-.wholesale { padding: 100px 0; background: var(--col-bg); }
-.wholesale-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
 
-.wholesale-perks { display: flex; flex-direction: column; gap: 0; }
-.perk { display: flex; gap: 20px; align-items: flex-start; padding: 24px 0; border-bottom: 1px solid var(--col-border); }
-.perk:first-child { border-top: 1px solid var(--col-border); }
-.perk-icon { width: 44px; height: 44px; background: var(--col-navy); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.perk-icon svg { width: 20px; height: 20px; stroke: #fff; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-.perk-title { font-size: 14px; font-weight: 700; color: var(--col-navy); letter-spacing: 0.02em; margin-bottom: 4px; }
-.perk-body { font-size: 14px; color: var(--col-mid); line-height: 1.6; }
+  footer{background:var(--paper);text-align:center;padding:6vh 0 6vh}
+  footer .name{font-family:var(--serif);font-size:22px;letter-spacing:.16em}
+  footer .meta{font-size:13px;color:var(--taupe);margin-top:12px;line-height:1.9}
+  footer a{color:var(--cognac-ink);text-decoration:none}
 
-.form-card { background: var(--col-surface); border: 1px solid var(--col-border); padding: 48px 44px; }
-.form-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--col-navy); margin-bottom: 12px; }
-.form-title { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--col-navy); line-height: 1.2; margin-bottom: 8px; }
-.form-subtitle { font-size: 14px; color: var(--col-mid); margin-bottom: 36px; line-height: 1.65; }
-.form-group { margin-bottom: 20px; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.form-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--col-text); margin-bottom: 8px; }
-.form-input, .form-select, .form-textarea {
-  width: 100%; background: var(--col-bg); border: 1px solid var(--col-border-hi); border-radius: 0;
-  color: var(--col-text); font-family: var(--font-body); font-size: 15px; font-weight: 400;
-  padding: 12px 14px; outline: none; transition: border-color 0.2s, box-shadow 0.2s;
-}
-.form-input::placeholder, .form-textarea::placeholder { color: var(--col-ghost); }
-.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--col-navy); box-shadow: 0 0 0 3px rgba(27,42,74,0.07); }
-.form-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231B2A4A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; background-color: var(--col-bg); cursor: pointer; }
-.form-textarea { resize: vertical; min-height: 80px; }
-.form-submit { width: 100%; background: var(--col-navy); color: #fff; font-family: var(--font-body); font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; padding: 18px; border: 2px solid var(--col-navy); cursor: pointer; transition: background 0.2s; margin-top: 8px; }
-.form-submit:hover { background: var(--col-navy-mid); border-color: var(--col-navy-mid); }
-.form-note { font-size: 11px; color: var(--col-mute); margin-top: 14px; line-height: 1.65; text-align: center; }
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity 1s cubic-bezier(.2,.6,.2,1),transform 1s cubic-bezier(.2,.6,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.24s}.reveal.d3{transition-delay:.36s}
 
-/* ═══════════════════════════════════════════
-   10 — FOOTER
-═══════════════════════════════════════════ */
-.footer { background: var(--col-navy); padding: 64px 0 40px; }
-.footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 40px; }
-.footer-brand-logo { font-family: var(--font-display); font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 16px; letter-spacing: 0.04em; }
-.footer-brand-body { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.75; max-width: 280px; margin-bottom: 28px; }
-.footer-social { display: flex; gap: 10px; }
-.footer-social-link { width: 40px; height: 40px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; transition: background 0.2s; cursor: pointer; color: rgba(255,255,255,0.7); }
-.footer-social-link:hover { background: rgba(255,255,255,0.15); color: #fff; }
-.footer-col-title { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 20px; }
-.footer-col-item { display: block; font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 10px; transition: color 0.2s; cursor: pointer; }
-.footer-col-item:hover { color: #fff; }
-.footer-col-item svg { display: inline; vertical-align: middle; margin-right: 8px; width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-.footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-.footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); letter-spacing: 0.04em; }
-.footer-origin { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
-.footer-origin::before { content: ''; width: 20px; height: 1px; background: rgba(255,255,255,0.2); }
-
-/* ═══════════════════════════════════════════
-   STICKY WHATSAPP
-═══════════════════════════════════════════ */
-.wa-btn { position: fixed; bottom: 28px; right: 28px; z-index: 200; width: 56px; height: 56px; background: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,0.4); cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; border-radius: 50%; }
-.wa-btn:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(37,211,102,0.5); }
-.wa-btn svg { width: 28px; height: 28px; fill: #fff; }
-
-/* ═══════════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════════ */
-@media (max-width: 1024px) {
-  .hero { grid-template-columns: 1fr; min-height: auto; }
-  .hero::after { display: none; }
-  .hero-content { max-width: 100%; padding: 100px var(--gutter) 48px; margin-left: 0; }
-  .hero-image-panel { height: 420px; padding: 40px var(--gutter); justify-content: flex-start; }
-  .hero-boot-img { max-height: 380px; }
-  .credibility-inner { grid-template-columns: 1fr; gap: 48px; }
-  .problem-inner { grid-template-columns: 1fr; gap: 40px; }
-  .problem-header { position: static; }
-  .wholesale-inner { grid-template-columns: 1fr; gap: 48px; }
-  .offer-grid { grid-template-columns: 1fr 1fr; }
-  .catalog-grid { grid-template-columns: 1fr 1fr; }
-  .process-steps { grid-template-columns: 1fr; gap: 40px; }
-  .process-steps::before { display: none; }
-  .leadmagnet-inner { grid-template-columns: 1fr; }
-  .leadmagnet-visual { min-height: 300px; }
-  .footer-inner { grid-template-columns: 1fr 1fr; }
-  .proof-grid { grid-template-columns: 1fr 1fr; }
-  .proof-photo-strip { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 640px) {
-  /* ── Layout collapses ── */
-  .offer-grid { grid-template-columns: 1fr; }
-  .catalog-grid { grid-template-columns: 1fr 1fr; }   /* 2x2 keeps boots visible but compact */
-  .footer-inner { grid-template-columns: 1fr; }
-  .form-row { grid-template-columns: 1fr; }
-  .credibility-stats { grid-template-columns: 1fr 1fr; }
-  .hero-metric { border-right: none; margin-right: 0; padding-right: 0; }
-  .proof-grid { grid-template-columns: 1fr; }
-  .nav-links { display: none; }
-
-  /* ── Compress vertical rhythm — the real mobile fix ── */
-  .credibility { padding: 56px 0; }
-  .problem, .offer, .catalog, .process, .proof, .wholesale { padding: 56px 0; }
-  .footer { padding: 48px 0 32px; }
-
-  .hero-content { padding: 96px 24px 40px; }
-  .hero-sub { font-size: 16px; margin-bottom: 28px; }
-  .hero-actions { gap: 12px; margin-bottom: 36px; }
-  .hero-actions .btn-primary, .hero-actions .btn-secondary { width: 100%; justify-content: center; }
-  .hero-metrics { gap: 20px 28px; padding-top: 24px; }
-  .hero-image-panel { height: 340px; padding: 24px; }
-  .hero-boot-img { max-height: 300px; }
-
-  /* Tighter cards & blocks */
-  .form-card { padding: 28px 22px; }
-  .offer-card { padding: 28px 24px; }
-  .testimonial-card { padding: 28px 24px; }
-  .problem-item { padding: 22px 0; gap: 16px; grid-template-columns: 36px 1fr; }
-  .problem-num { font-size: 24px; }
-  .process-steps { gap: 28px; }
-  .process-header { margin-bottom: 40px; }
-  .offer-header { margin-bottom: 36px; }
-  .catalog-header, .proof-header { margin-bottom: 32px; }
-  .leadmagnet-content { padding: 48px 24px; }
-  .proof-photo-strip { margin-top: 32px; }
-  .proof-photo { height: 150px; }
-
-  /* Smaller headlines so they don't eat the screen */
-  .section-headline { font-size: 32px; }
-  .credibility::before { font-size: 140px; }
-
-  /* Compact boot cards in 2x2 */
-  .boot-card-body { padding: 14px 14px 18px; }
-  .boot-card-name { font-size: 17px; }
-  .boot-card-desc { font-size: 12px; margin-bottom: 14px; }
-  .boot-card-footer { flex-direction: column; align-items: flex-start; gap: 8px; }
-}
+  /* ═══════════════════════════════════════════
+     SIN MOVIMIENTO — el clip se queda en un cuadro
+     y el hero se lee como página normal
+  ═══════════════════════════════════════════ */
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+    .film{height:auto}
+    .film-stage{position:relative;height:auto;padding-bottom:6vh}
+    .film-stage canvas{height:58vh}
+    .film-copy{position:static;display:block;padding:6vh 26px 0;max-width:860px;margin:0 auto}
+    .film-copy::before{display:none}
+    .film-copy-inner{max-width:none}
+    .film-rail{display:none}
+  }
 </style>
 </head>
 <body>
 
-<!-- STICKY WHATSAPP -->
-<a href="https://wa.me/524439171366" target="_blank" class="wa-btn" title="Chat on WhatsApp">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-</a>
-
-<!-- NAV -->
-<nav class="nav" id="mainNav">
-  <div class="nav-inner">
-    <img src="terraloma.logo.webp" alt="Terraloma Distribution" style="height:56px;width:auto;">
-    <ul class="nav-links">
-      <li><a href="#why-leon">Why León</a></li>
-      <li><a href="#catalog">Catalog</a></li>
-      <li><a href="#how-it-works">How It Works</a></li>
-    </ul>
-    <a href="#wholesale-form" class="nav-cta">Request Access</a>
-  </div>
-</nav>
-
-<!-- ══════ 01 — HERO ══════ -->
-<section class="hero">
-  <div class="hero-content">
-    <div style="margin-bottom:28px" class="reveal">
-      <span class="eyebrow">León, Guanajuato — Direct from the Workshop</span>
+  <header id="hdr">
+    <div class="bar">
+      <a class="brand" href="#top">Terraloma</a>
+      <span class="loc">León, Guanajuato — México</span>
     </div>
-    <h1 class="hero-headline reveal reveal-delay-1">
-      Start your boot<br>
-      business with<br>
-      <em>as little as 14 pairs.</em>
-    </h1>
-    <p class="hero-sub reveal reveal-delay-2">
-      You don't need experience, a warehouse, or a big budget. We handle the sourcing, customs, and shipping from León — the leather capital of the world. You sell. We supply.
-    </p>
-    <div class="hero-actions reveal reveal-delay-3">
-      <a href="#wholesale-form" class="btn-primary">Get the Catalog →</a>
-      <a href="#catalog" class="btn-secondary">See the Boots</a>
-    </div>
-    <div class="hero-metrics reveal reveal-delay-4">
-      <div class="hero-metric">
-        <div class="hero-metric-num">14</div>
-        <div class="hero-metric-label">Pairs to start</div>
-      </div>
-      <div class="hero-metric">
-        <div class="hero-metric-num">0</div>
-        <div class="hero-metric-label">Permits needed</div>
-      </div>
-      <div class="hero-metric">
-        <div class="hero-metric-num">24h</div>
-        <div class="hero-metric-label">We respond in</div>
-      </div>
-      <div class="hero-metric">
-        <div class="hero-metric-num">40<span style="font-size:20px">+</span></div>
-        <div class="hero-metric-label">Yrs manufacturing</div>
+  </header>
+  <a name="top"></a>
+
+  <!-- ══════ HERO — imagen fija de la bota + copy ══════ -->
+  <section class="hero-static" id="hero">
+    <picture class="hero-boot" aria-hidden="true">
+      <source media="(max-width:900px)" srcset="movil.png">
+      <img src="brands/pc.png" alt="" width="2688" height="1520">
+    </picture>
+    <div class="hero-copy">
+      <div class="hero-copy-inner">
+        <p class="eyebrow reveal">Private-label boots · by partnership, from León</p>
+        <h1 class="reveal d1">We make the boots of your brand.</h1>
+        <p class="lead reveal d2">Handmade boots with the look of exotic leather, designed with you and built for your label alone. Your customers see your name — nobody sees us.</p>
+        <a class="btn reveal d3" href="#apply">Apply to become a partner</a>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="hero-image-panel">
-    <img src="firstboot.webp" alt="Terraloma exotic cowboy boot" class="hero-boot-img" onerror="this.style.display='none'">
-  </div>
-</section>
-
-<!-- ══════ 02 — WHY LEON ══════ -->
-<section class="credibility" id="why-leon">
-  <div class="container">
-    <div class="credibility-inner">
-      <div>
-        <div class="reveal" style="margin-bottom:24px">
-          <span style="display:inline-flex;align-items:center;gap:12px;font-family:var(--font-body);font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.4);">
-            <span style="display:inline-block;width:28px;height:1px;background:rgba(255,255,255,0.3)"></span>
-            Why León
-          </span>
-        </div>
-        <h2 class="credibility-headline reveal reveal-delay-1">
-          The leather capital<br>
-          <em>of the Western<br>Hemisphere.</em>
-        </h2>
-        <p class="credibility-body reveal reveal-delay-2">
-          León, Guanajuato produces more leather goods than almost any city outside of Asia. The workshops here have supplied major American brands — quietly, without attribution — for over 40 years. We cut out the middlemen and work directly with the artisan families who make the product.
-        </p>
-        <p class="credibility-body reveal reveal-delay-2" style="margin-bottom:0">
-          Whether you choose genuine exotic leather or our exotic-embossed cowhide, every pair is cut and stitched by hand — in the same workshops that supply retailers charging four times the price.
-        </p>
-      </div>
-
-      <div class="reveal reveal-delay-2">
-        <div class="credibility-stats">
-          <div class="cred-stat">
-            <div class="cred-stat-num">40<span>+</span></div>
-            <div class="cred-stat-label">Years of leather manufacturing in León</div>
-          </div>
-          <div class="cred-stat">
-            <div class="cred-stat-num"><span>#1</span></div>
-            <div class="cred-stat-label">Leather city in the Americas</div>
-          </div>
-          <div class="cred-stat">
-            <div class="cred-stat-num">5</div>
-            <div class="cred-stat-label">Exotic leather types in stock</div>
-          </div>
-          <div class="cred-stat">
-            <div class="cred-stat-num">14</div>
-            <div class="cred-stat-label">Pair MOQ — lowest in category</div>
-          </div>
-        </div>
-        <div class="cred-process-imgs">
-          <div class="cred-img-block">
-            <img src="taller1.webp" alt="León workshop" onerror="this.style.display='none'">
-            <div class="cred-img-placeholder">Workshop floor — León, Guanajuato</div>
-            <div class="cred-img-label">Workshop Floor — León, Guanajuato</div>
-          </div>
-          <div class="cred-img-block">
-            <img src="taller2.webp" alt="Leather cutting" onerror="this.style.display='none'">
-            <div class="cred-img-placeholder">Hand cutting</div>
-            <div class="cred-img-label">Hand Cutting</div>
-          </div>
-          <div class="cred-img-block">
-            <img src="taller5.webp" alt="Boot assembly" onerror="this.style.display='none'">
-            <div class="cred-img-placeholder">Boot assembly</div>
-            <div class="cred-img-label">Lasting &amp; Assembly</div>
-          </div>
-          <div class="cred-img-block">
-            <img src="taller6.webp" alt="Artisan at work" onerror="this.style.display='none'">
-            <div class="cred-img-placeholder">Artisan at work</div>
-            <div class="cred-img-label">Handcrafted in León</div>
-          </div>
-        </div>
-      </div>
+  <!-- ══════ Copy en editorial normal ══════ -->
+  <section class="pad pad--split">
+    <div class="wrap">
+      <p class="eyebrow reveal">The exotic look, the smart way</p>
+      <h2 class="reveal d1">All the exotic.<br>None of the paperwork.</h2>
+      <p class="body reveal d2">Our boots carry the look and feel of caiman, python and ostrich — crafted in premium embossed leather. No exotic-skin permits, no customs trouble, no legal grey areas. The same head-turning look on your shelf, at a price that actually leaves you a margin.</p>
+      <figure class="plate plate--boot reveal d3"><img src="brands/1q.png" alt="Black caiman-look boot floating on the page" loading="lazy"></figure>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══════ 03 — THE PROBLEM ══════ -->
-<section class="problem">
-  <div class="container">
-    <div class="problem-inner">
-      <div class="problem-header">
-        <div class="eyebrow reveal" style="margin-bottom:24px">The Problem We Solve</div>
-        <h2 class="section-headline reveal reveal-delay-1">You want to start.<br>Here's what's<br>stopping you.</h2>
-        <p class="section-sub reveal reveal-delay-2" style="margin-top:20px">These are the real reasons most people never pull the trigger on a boot business. We built Terraloma to remove every one of them.</p>
-      </div>
-      <div class="problem-list">
-        <div class="problem-item reveal">
-          <div class="problem-num">01</div>
-          <div>
-            <div class="problem-title">"I'm afraid of losing money on my first order."</div>
-            <p class="problem-body">Most importers demand 50–100 pairs minimum. That's thousands of dollars on a product you've never tested. Our MOQ is 14 pairs — low enough to test the market without betting your savings on it.</p>
-          </div>
-        </div>
-        <div class="problem-item reveal reveal-delay-1">
-          <div class="problem-num">02</div>
-          <div>
-            <div class="problem-title">"I don't have permits for exotic leather."</div>
-            <p class="problem-body">You don't need them to start. Our embossed cowhide line gives you the exact same look — Pirarucu scale, Caiman texture, Ostrich quill — using genuine cowhide with exotic prints. No permits required. No legal risk. Just boots that sell.</p>
-          </div>
-        </div>
-        <div class="problem-item reveal reveal-delay-2">
-          <div class="problem-num">03</div>
-          <div>
-            <div class="problem-title">"I don't know how customs or shipping works."</div>
-            <p class="problem-body">We handle it. You place the order, we manage the paperwork, freight, and delivery to your door in the US. Delivery is 7–14 business days depending on model availability. You don't need to know anything about importing.</p>
-          </div>
-        </div>
-      </div>
+  <section class="statement">
+    <div class="wrap">
+      <p class="reveal">Boots worth putting your name on.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══════ 04 — OFFER ══════ -->
-<section class="offer" id="what-we-offer">
-  <div class="container">
-    <div class="offer-header">
-      <div class="eyebrow reveal" style="margin-bottom:16px">What We Offer</div>
-      <h2 class="section-headline reveal reveal-delay-1">Everything a reseller<br>needs. Nothing extra.</h2>
+  <section class="pad pad--split pad--image-right">
+    <div class="wrap">
+      <p class="eyebrow reveal">Made in León</p>
+      <h2 class="reveal d1">Forty years<br>at the bench.</h2>
+      <p class="body reveal d2">Terraloma comes out of a family workshop in León, the leather capital of México. No assembly line, no shortcuts — the same hands that were making boots before most brands existed.</p>
+      <figure class="plate reveal d3"><img src="brands/taller3.webp" alt="A craftsman at the workshop machinery" loading="lazy"></figure>
     </div>
-    <div class="offer-grid">
-      <div class="offer-card reveal" style="border-top: 3px solid var(--col-navy);">
-        <div class="offer-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-        <div class="offer-card-title">Genuine Exotic Leather</div>
-        <p class="offer-card-body">Authentic Pirarucu, Caiman, Full-Quill Ostrich, Python, and Stingray. Hand-cut and stitched in León. For established retailers who already hold the required import and resale permits.</p>
-        <div class="offer-tag-list"><span class="offer-tag">Pirarucu</span><span class="offer-tag">Caiman</span><span class="offer-tag">Ostrich</span><span class="offer-tag">Python</span><span class="offer-tag">Stingray</span><span class="offer-tag">Permit required</span></div>
-      </div>
-      <div class="offer-card reveal reveal-delay-1" style="border-top: 3px solid var(--col-gold);">
-        <div class="offer-icon" style="background:var(--col-gold)"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-        <div class="offer-card-title">Embossed Cowhide</div>
-        <p class="offer-card-body">Exotic-print embossed genuine cowhide. The same aesthetic as exotic leather — Pirarucu scale, Caiman texture, Ostrich quill — without the permit requirements. 100% real leather. The smart entry point for new resellers.</p>
-        <div class="offer-tag-list"><span class="offer-tag">No permits needed</span><span class="offer-tag">100% genuine leather</span><span class="offer-tag">Best for new resellers</span></div>
-      </div>
-      <div class="offer-card reveal reveal-delay-2">
-        <div class="offer-icon"><svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2zM16 3H8a2 2 0 00-2 2v2h12V5a2 2 0 00-2-2z"/></svg></div>
-        <div class="offer-card-title">14-Pair MOQ</div>
-        <p class="offer-card-body">Minimum 14 pairs per style on both lines. Test a new model without overcommitting. Mix sizes freely within the order.</p>
-        <div class="offer-tag-list"><span class="offer-tag">No size minimums</span><span class="offer-tag">Mix & match sizes</span></div>
-      </div>
-      <div class="offer-card reveal">
-        <div class="offer-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.77 9.77 19.79 19.79 0 01.7 1.18 2 2 0 012.68 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l.91-.91a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 15.17v1.75z"/></svg></div>
-        <div class="offer-card-title">Direct WhatsApp Line</div>
-        <p class="offer-card-body">No ticketing system. No email queue. You message us directly on WhatsApp and get a human response within hours, not days.</p>
-        <div class="offer-tag-list"><span class="offer-tag">Direct contact</span><span class="offer-tag">Same-day reply</span></div>
-      </div>
-      <div class="offer-card reveal reveal-delay-1">
-        <div class="offer-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-        <div class="offer-card-title">Ships from México</div>
-        <p class="offer-card-body">Orders ship from León to US destinations. Customs paperwork handled. Delivery is 7–14 business days depending on model availability.</p>
-        <div class="offer-tag-list"><span class="offer-tag">León → USA</span><span class="offer-tag">7–14 bus. days</span></div>
-      </div>
-      <div class="offer-card reveal reveal-delay-2">
-        <div class="offer-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
-        <div class="offer-card-title">Private Website</div>
-        <p class="offer-card-body">Approved resellers get access to a private website with full inventory, all available styles, and pricing. Not indexed. Not public. Browse and order directly.</p>
-        <div class="offer-tag-list"><span class="offer-tag">Resellers only</span><span class="offer-tag">Private website</span></div>
-      </div>
+  </section>
+
+  <section class="pad pad--split">
+    <div class="wrap">
+      <p class="eyebrow reveal">From an idea to a finished pair</p>
+      <h2 class="reveal d1">You don't need to know boots. You need a brand worth making them for.</h2>
+      <p class="body reveal d2">Lasts, leathers, minimums — leave that to us. Come with your brand and a rough idea, even a photo you like, and we design the line with you from there. The design work is on us — no fees, no setup charges.</p>
+      <figure class="plate reveal d3"><img src="brands/plate-bench.webp" alt="Leather and pattern on the bench" loading="lazy"></figure>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══════ 05 — CATALOG ══════ -->
-<section class="catalog" id="catalog">
-  <div class="container">
-    <div class="catalog-header">
-      <div>
-        <div class="eyebrow reveal" style="margin-bottom:16px">Available Styles</div>
-        <h2 class="section-headline reveal reveal-delay-1">A preview of<br>the catalog.</h2>
+  <section class="pad pad--split pad--image-right">
+    <div class="wrap">
+      <p class="eyebrow reveal">What partnering with Terraloma gives you</p>
+      <h2 class="reveal d1">A boot line that looks luxury —<br>and pays like one.</h2>
+      <div class="trio reveal d2">
+        <div class="item"><h3>A shelf-ready product</h3><p>Exotic-look boots with your name on them, ready to sell.</p></div>
+        <div class="item"><h3>Margin that makes sense</h3><p>Premium perception, sane economics.</p></div>
+        <div class="item"><h3>A brand that looks bigger</h3><p>Your own line makes your label look established.</p></div>
       </div>
-      <p class="reveal" style="font-size:14px;color:var(--col-mid);max-width:300px;line-height:1.65;font-weight:500">Prices are not listed here. Approved resellers get access to the private website with full inventory and pricing.</p>
+      <figure class="plate reveal d3"><img src="brands/case.webp" alt="Boxes with a partner brand ready to ship" loading="lazy"></figure>
     </div>
+  </section>
 
-    <div class="catalog-grid">
-      <div class="boot-card reveal">
-        <div class="boot-card-img">
-          <img src="boot1.webp" alt="Crocodile embossed cowboy boot" onerror="this.style.display='none'">
-          <div class="boot-card-img-placeholder"><span class="boot-badge" style="background:var(--col-gold)">Crocodile Embossed</span></div>
-        </div>
-        <div class="boot-card-body">
-          <div class="boot-card-material">Embossed · Crocodile Print</div>
-          <div class="boot-card-name">The Americano</div>
-          <p class="boot-card-desc">Crocodile-embossed cowhide vamp, black shaft with American flag detail and laser-cut stars. Wide square toe. Brown and Black.</p>
-          <div class="boot-card-footer">
-            <div class="boot-card-moq">MOQ <strong>14 pairs</strong></div>
-            <a href="#wholesale-form" class="boot-card-cta">Request info →</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="boot-card reveal reveal-delay-1">
-        <div class="boot-card-img">
-          <img src="boot2.webp" alt="Python embossed cowboy boot" onerror="this.style.display='none'">
-          <div class="boot-card-img-placeholder"><span class="boot-badge" style="background:var(--col-gold)">Python Embossed</span></div>
-        </div>
-        <div class="boot-card-body">
-          <div class="boot-card-material">Embossed · Python Print</div>
-          <div class="boot-card-name">The Nightrider</div>
-          <p class="boot-card-desc">All-black python-embossed cowhide, tone-on-tone construction. Clean and versatile — moves across every demographic.</p>
-          <div class="boot-card-footer">
-            <div class="boot-card-moq">MOQ <strong>14 pairs</strong></div>
-            <a href="#wholesale-form" class="boot-card-cta">Request info →</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="boot-card reveal reveal-delay-2">
-        <div class="boot-card-img">
-          <img src="boot3.webp" alt="Pirarucu embossed cowboy boot" onerror="this.style.display='none'">
-          <div class="boot-card-img-placeholder"><span class="boot-badge" style="background:var(--col-gold)">Pirarucu Embossed</span></div>
-        </div>
-        <div class="boot-card-body">
-          <div class="boot-card-material">Embossed · Pirarucu Print</div>
-          <div class="boot-card-name">The Tejano</div>
-          <p class="boot-card-desc">Pirarucu-embossed cowhide vamp, oxblood shaft with traditional embroidery and diamond-pattern inlay. Wide square toe.</p>
-          <div class="boot-card-footer">
-            <div class="boot-card-moq">MOQ <strong>14 pairs</strong></div>
-            <a href="#wholesale-form" class="boot-card-cta">Request info →</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="boot-card reveal reveal-delay-3">
-        <div class="boot-card-img">
-          <img src="boot4.webp" alt="Python embossed ostrich cowboy boot" onerror="this.style.display='none'">
-          <div class="boot-card-img-placeholder"><span class="boot-badge" style="background:var(--col-gold)">Python Embossed</span></div>
-        </div>
-        <div class="boot-card-body">
-          <div class="boot-card-material">Embossed · Python Print</div>
-          <div class="boot-card-name">The Rancher</div>
-          <p class="boot-card-desc">Python-embossed cowhide vamp, dark chocolate shaft with diamond inlay embroidery. One of the highest-margin models in the lineup.</p>
-          <div class="boot-card-footer">
-            <div class="boot-card-moq">MOQ <strong>14 pairs</strong></div>
-            <a href="#wholesale-form" class="boot-card-cta">Request info →</a>
-          </div>
-        </div>
-      </div>
+  <section class="pad pad--split">
+    <div class="wrap">
+      <h2 class="reveal">Your design,<br>and yours alone.</h2>
+      <p class="body reveal d1">Whatever we build together stays yours — your toe, your leather, your stitch, your logo in every pair. We never resell your design or hand it to another brand. It's your boot. We just make it real.</p>
+      <figure class="plate plate--sole reveal d2"><img src="brands/your%20brand.png" alt="A boot sole stamped with the partner's brand" loading="lazy"></figure>
     </div>
+  </section>
 
-    <div style="text-align:center;margin-top:48px" class="reveal">
-      <p style="font-size:14px;color:var(--col-mute);margin-bottom:24px;font-weight:500;letter-spacing:0.04em">20+ additional styles in the private catalog — Caiman, Python, Stingray, and more.</p>
-      <a href="#wholesale-form" class="btn-primary">Request Full Catalog Access →</a>
+  <section class="proof pad">
+    <div class="wrap">
+      <p class="eyebrow reveal">The brands we build for</p>
+      <p class="quote reveal d1">The Millinery — a luxury hat house in New Jersey — is one of the brands that trusts Terraloma with its boots.</p>
+      <p class="body reveal d2">Established labels come to us when they want boots that live up to their name. We take on a handful at a time, and we choose them as carefully as they choose us.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══════ 06 — HOW IT WORKS ══════ -->
-<section class="process" id="how-it-works">
-  <div class="container">
-    <div class="process-header">
-      <div class="reveal" style="margin-bottom:20px">
-        <span style="font-family:var(--font-body);font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.4)">How It Works</span>
-      </div>
-      <h2 class="section-headline reveal reveal-delay-1" style="color:#fff;text-align:center;margin-bottom:16px">From application<br>to delivery in 3 steps.</h2>
-      <p class="section-sub reveal reveal-delay-2" style="color:rgba(255,255,255,0.55);text-align:center;margin:0 auto">No brokers. No mystery. You deal directly with us.</p>
-    </div>
-
-    <div class="process-steps">
-      <div class="process-step reveal">
-        <div class="process-step-num">01</div>
-        <div class="process-step-title">Submit Your Application</div>
-        <p class="process-step-body">Fill out the short form below. Tell us your channel and estimated volume. We review every application manually. <strong>Turnaround: under 24 hours.</strong></p>
-      </div>
-      <div class="process-step reveal reveal-delay-1">
-        <div class="process-step-num">02</div>
-        <div class="process-step-title">Get Access to the Site</div>
-        <p class="process-step-body">Approved resellers receive a link to the private website — full inventory, styles, materials, and pricing. Browse, select what you want, we send a proforma invoice. <strong>Payment via wire or Zelle.</strong></p>
-      </div>
-      <div class="process-step reveal reveal-delay-2">
-        <div class="process-step-num">03</div>
-        <div class="process-step-title">We Ship Direct to You</div>
-        <p class="process-step-body">Production takes 2–3 weeks after confirmation. US delivery adds 5–7 business days. <strong>Tracking provided. Customs paperwork handled.</strong></p>
-      </div>
-    </div>
-
-    <div class="process-cta reveal">
-      <a href="#wholesale-form" class="btn-primary" style="background:#fff;color:var(--col-navy);border-color:#fff">Start Your Application →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ══════ 07 — SOCIAL PROOF ══════ -->
-<section class="proof" id="proof">
-  <div class="container">
-    <div class="proof-header">
-      <div>
-        <div class="eyebrow reveal" style="margin-bottom:16px">What Resellers Say</div>
-        <h2 class="section-headline reveal reveal-delay-1">The numbers<br>speak for themselves.</h2>
-      </div>
-      <div class="reveal">
-        <p style="font-size:13px;color:var(--col-mute);font-weight:500;max-width:260px;line-height:1.6;text-align:right">These are accounts who placed their first order with real skepticism. They're still ordering.</p>
-      </div>
-    </div>
-
-    <div class="proof-grid">
-      <div class="testimonial-card reveal">
-        <div class="testimonial-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-        <p class="testimonial-body">"Ordered 28 pairs of the Pirarucu model. Sold through in 11 days. My margin was better than anything I've run through a US distributor in four years. I reordered the same week."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">R</div>
-          <div><div class="testimonial-name">Randy M.</div><div class="testimonial-role">Boot Retailer · San Antonio, TX</div></div>
+  <section class="apply pad" id="apply">
+    <div class="wrap">
+      <h2 class="reveal">Apply to become a partner.</h2>
+      <p class="lead reveal d1">We take on a few brands at a time and we're selective about the fit. Tell us about yours — we'll see if it's a match.</p>
+      <form id="applyForm" class="reveal d2">
+        <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
+        <div class="field"><label for="f-name">Your name</label><input id="f-name" type="text" name="name" required placeholder="First and last name"></div>
+        <div class="field"><label for="f-brand">Your brand</label><input id="f-brand" type="text" name="brand" required placeholder="The name of your label"></div>
+        <div class="field cs" data-cs>
+          <label for="f-sells">What your brand sells</label>
+          <button type="button" class="cs-trigger placeholder" aria-haspopup="listbox" aria-expanded="false">
+            <span class="cs-value">Choose one</span>
+            <svg class="cs-chevron" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M1 1l5 5 5-5"/></svg>
+          </button>
+          <div class="cs-panel" role="listbox" tabindex="-1"></div>
+          <select id="f-sells" name="sells" required aria-hidden="true" tabindex="-1">
+            <option value="" disabled selected>Choose one</option>
+            <option>Hats</option>
+            <option>Belts / leather goods</option>
+            <option>Apparel / streetwear</option>
+            <option>Western / boots retail</option>
+            <option>Boutique / multi-brand store</option>
+            <option>Other</option>
+          </select>
         </div>
-      </div>
-      <div class="testimonial-card reveal reveal-delay-1">
-        <div class="testimonial-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-        <p class="testimonial-body">"I've sourced from El Paso and Fort Worth for 15 years. The León product is a different tier — and the price makes no sense until you see the volume I'm moving. First order was 56 pairs."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">D</div>
-          <div><div class="testimonial-name">Debbie L.</div><div class="testimonial-role">Western Wear Store · Nashville, TN</div></div>
-        </div>
-      </div>
-      <div class="testimonial-card reveal reveal-delay-2">
-        <div class="testimonial-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-        <p class="testimonial-body">"I run a booth at three Texas flea markets. Caiman boots at that price point — I can move them at $189 and still double my money. That's the model I've been looking for."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">T</div>
-          <div><div class="testimonial-name">Tommy V.</div><div class="testimonial-role">Flea Market Vendor · Houston, TX</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="proof-photo-strip reveal">
-      <div class="proof-photo">
-        <img src="taller3.webp" alt="León workshop" onerror="this.style.display='none'">
-        <div class="proof-photo-placeholder">Workshop · León</div>
-        <div class="proof-photo-label">The Workshop Floor</div>
-      </div>
-      <div class="proof-photo">
-        <img src="taller7.webp" alt="Leather work" onerror="this.style.display='none'">
-        <div class="proof-photo-placeholder">Leather Work</div>
-        <div class="proof-photo-label">Cutting &amp; Shaping</div>
-      </div>
-      <div class="proof-photo">
-        <img src="taller8.webp" alt="Boot detailing" onerror="this.style.display='none'">
-        <div class="proof-photo-placeholder">Detailing</div>
-        <div class="proof-photo-label">Stitch &amp; Finish</div>
-      </div>
-      <div class="proof-photo">
-        <img src="taller4.webp" alt="Finished boots" onerror="this.style.display='none'">
-        <div class="proof-photo-placeholder">Finished Product</div>
-        <div class="proof-photo-label">Ready to Ship</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════ 08 — LEAD MAGNET ══════ -->
-<section class="leadmagnet" id="free-guide">
-  <div class="leadmagnet-inner">
-    <div class="leadmagnet-content">
-      <div class="eyebrow reveal" style="margin-bottom:20px">Free Download</div>
-      <h2 class="leadmagnet-headline reveal reveal-delay-1">The Reseller's Guide<br>to Boots.</h2>
-      <p class="leadmagnet-sub reveal reveal-delay-2">No fluff. Everything you need to know before placing your first wholesale order for leather cowboy boots.</p>
-      <ul class="leadmagnet-list reveal reveal-delay-2">
-        <li>Why right now is your window</li>
-        <li>Which exotic leathers sell fastest</li>
-        <li>Pricing: margin vs. velocity</li>
-        <li>Your first 10 customers are already in your phone</li>
-        <li>How to sell boots on TikTok without spending a dollar on ads</li>
-        <li>Size distribution guide</li>
-        <li>The boot business masterclass</li>
-      </ul>
-      <form id="pdfForm" class="lm-form reveal reveal-delay-3" onsubmit="handleLMSubmit(event)">
-        <input class="lm-input" name="email" type="email" placeholder="Enter your email address" required>
-        <button class="lm-btn" type="submit">Get the Guide →</button>
+        <div class="field"><label for="f-link">Instagram or website</label><input id="f-link" type="text" name="link" required placeholder="@yourbrand or yourbrand.com"></div>
+        <div class="field"><label for="f-email">Email</label><input id="f-email" type="email" name="email" required placeholder="you@brand.com"></div>
+        <div class="field"><label for="f-wa">WhatsApp</label><input id="f-wa" type="text" name="whatsapp" required placeholder="With country code"></div>
+        <div class="field"><label for="f-idea">What do you have in mind?</label><textarea id="f-idea" name="idea" placeholder="A rough idea is enough — a style, a leather, even a photo you like."></textarea></div>
+        <input type="hidden" name="_subject" value="New Terraloma partner application">
+        <button type="submit" class="submit">Send application</button>
       </form>
-      <p class="lm-note reveal">Didn't get the PDF? Check your spam or promotions folder.</p>
+      <p class="form-done" id="formDone">Thank you — your application is in.<br>We'll be in touch if it's a fit.</p>
+      <p class="backup reveal d3">Prefer to talk first? <a href="#" data-wa>Message us on WhatsApp.</a></p>
     </div>
-    <div class="leadmagnet-visual">
-      <div class="pdf-mockup">
-        <div class="pdf-tag">Free PDF</div>
-        <div class="pdf-mockup-header">
-          <div class="pdf-mockup-logo">TERRALOMA</div>
-          <div class="pdf-mockup-title">Reseller's Guide to Boots</div>
-        </div>
-        <div class="pdf-mockup-body">
-          <div class="pdf-line pdf-line-short"></div>
-          <div class="pdf-img-block"></div>
-          <div class="pdf-line pdf-line-full"></div>
-          <div class="pdf-line pdf-line-med"></div>
-          <div class="pdf-line pdf-line-full"></div>
-          <div class="pdf-line pdf-line-short"></div>
-          <div style="height:4px"></div>
-          <div class="pdf-line pdf-line-med"></div>
-          <div class="pdf-line pdf-line-full"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══════ 09 — WHOLESALE FORM ══════ -->
-<section class="wholesale" id="wholesale-form">
-  <div class="container">
-    <div class="wholesale-inner">
-      <div class="wholesale-left">
-        <div class="eyebrow reveal" style="margin-bottom:24px">Apply for Access</div>
-        <h2 class="section-headline reveal reveal-delay-1">Ready to see<br>the private site?</h2>
-        <p class="section-sub reveal reveal-delay-2" style="margin-top:20px;margin-bottom:40px">Submit your application. We review manually and respond within 24 hours. Approved accounts get the full catalog, pricing, and a direct WhatsApp line.</p>
-        <div class="wholesale-perks reveal reveal-delay-3">
-          <div class="perk">
-            <div class="perk-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-            <div>
-              <div class="perk-title">No gatekeeping — we review everyone</div>
-              <p class="perk-body">We work with retailers, online resellers, flea market vendors, and boutiques. If you sell boots, we want to talk.</p>
-            </div>
-          </div>
-          <div class="perk">
-            <div class="perk-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-            <div>
-              <div class="perk-title">Your pricing stays private</div>
-              <p class="perk-body">Wholesale pricing is never posted publicly. Your margin is your competitive advantage — we protect it.</p>
-            </div>
-          </div>
-          <div class="perk">
-            <div class="perk-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-            <div>
-              <div class="perk-title">Response within 24 hours</div>
-              <p class="perk-body">A real person reviews your application and responds the same business day. No automated pipeline.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+  <footer>
+    <div class="wrap">
+      <p class="name">TERRALOMA</p>
+      <p class="meta">Private-label boots · León, México<br>
+      <a href="#" data-wa>WhatsApp</a> &nbsp;·&nbsp; <a href="https://instagram.com/terralomamx" target="_blank" rel="noopener">Instagram</a></p>
+    </div>
+  </footer>
 
-      <div class="reveal reveal-delay-1">
-        <div class="form-card">
-          <div class="form-eyebrow">Wholesale Application</div>
-          <div class="form-title">Request<br>Site Access</div>
-          <p class="form-subtitle">Approved resellers receive a link to the private website with full inventory and pricing, plus a direct WhatsApp contact for placing orders.</p>
-          <form id="wholesaleForm" onsubmit="handleWholesaleSubmit(event)">
-            <div class="form-row">
-              <div class="form-group"><label class="form-label">First Name</label><input class="form-input" name="firstName" type="text" placeholder="First" required></div>
-              <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" name="lastName" type="text" placeholder="Last" required></div>
-            </div>
-            <div class="form-group"><label class="form-label">Business Email</label><input class="form-input" name="email" type="email" placeholder="you@yourbusiness.com" required></div>
-            <div class="form-group"><label class="form-label">Phone / WhatsApp</label><input class="form-input" name="phone" type="tel" placeholder="+1 (555) 123-4567" required></div>
-            <div class="form-group"><label class="form-label">Business Name</label><input class="form-input" name="businessName" type="text" placeholder="Your store or business name" required></div>
-            <div class="form-group">
-              <label class="form-label">Business Type</label>
-              <select class="form-select" name="businessType" required>
-                <option value="" disabled selected>Select your channel</option>
-                <option>Boot / Western wear retailer</option>
-                <option>Online reseller (Amazon, eBay, Shopify)</option>
-                <option>Flea market / trade show vendor</option>
-                <option>Boutique clothing store</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Estimated Monthly Volume</label>
-              <select class="form-select" name="volume" required>
-                <option value="" disabled selected>Pairs per month</option>
-                <option>14–30 pairs</option>
-                <option>30–100 pairs</option>
-                <option>100–300 pairs</option>
-                <option>300+ pairs</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Anything else? <span style="color:var(--col-mute);font-weight:500">(optional)</span></label>
-              <textarea class="form-textarea" name="message" placeholder="Current suppliers, styles you're interested in, anything relevant..."></textarea>
-            </div>
-            <button class="form-submit" type="submit">Submit Application →</button>
-          </form>
-          <p class="form-note">No spam. No sales calls. We'll send the link to the private site and a WhatsApp number for direct ordering.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════ 10 — FOOTER ══════ -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-inner">
-      <div>
-        <img src="terraloma.logo.webp" alt="Terraloma Distribution" style="height:44px;width:auto;margin-bottom:16px;filter:brightness(0) invert(1);">
-        <p class="footer-brand-body">Wholesale distribution of exotic and artisan leather cowboy boots. Manufactured in León, Guanajuato, México. Sold to resellers across the United States.</p>
-        <div class="footer-social">
-          <a href="https://wa.me/524439171366" target="_blank" class="footer-social-link" title="WhatsApp">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          </a>
-          <a href="https://instagram.com/terralomamx" target="_blank" class="footer-social-link" title="Instagram">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-          </a>
-          <a href="mailto:terraloma.distribution@gmail.com" class="footer-social-link" title="Email">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </a>
-        </div>
-      </div>
-      <div>
-        <div class="footer-col-title">Contact</div>
-        <a href="mailto:terraloma.distribution@gmail.com" class="footer-col-item">
-          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          terraloma.distribution@gmail.com
-        </a>
-        <a href="https://wa.me/524439171366" target="_blank" class="footer-col-item">
-          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.77 9.77 19.79 19.79 0 01.7 1.18 2 2 0 012.68 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l.91-.91a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 15.17v1.75z"/></svg>
-          WhatsApp Direct
-        </a>
-        <a href="https://instagram.com/terralomamx" target="_blank" class="footer-col-item">
-          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg>
-          @terralomamx
-        </a>
-      </div>
-      <div>
-        <div class="footer-col-title">Leathers</div>
-        <span class="footer-col-item">Pirarucu Scale</span>
-        <span class="footer-col-item">Caiman Belly</span>
-        <span class="footer-col-item">Full-Quill Ostrich</span>
-        <span class="footer-col-item">Python</span>
-        <span class="footer-col-item">Stingray</span>
-      </div>
-      <div>
-        <div class="footer-col-title">For Resellers</div>
-        <a href="#wholesale-form" class="footer-col-item">Request Catalog</a>
-        <a href="#free-guide" class="footer-col-item">Free Buyer's Guide</a>
-        <a href="#why-leon" class="footer-col-item">Why León</a>
-        <a href="#how-it-works" class="footer-col-item">How It Works</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p class="footer-copy">© 2025 Terraloma Distribution. All rights reserved.</p>
-      <div class="footer-origin">Manufactured in León, Guanajuato, México</div>
-    </div>
-  </div>
-</footer>
+  <a class="float" href="#" data-wa aria-label="Message us on WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15l-1.4 5 5.1-1.3A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1112 20zm4.6-6c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5 0a6.5 6.5 0 01-1.9-1.2 7.2 7.2 0 01-1.4-1.7c-.1-.3 0-.4.1-.5l.4-.5.3-.4v-.4c0-.1-.6-1.5-.8-2s-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.7 11.9 11.9 0 004.6 4c.6.3 1.1.4 1.5.6a3.6 3.6 0 001.6.1c.5-.1 1.5-.6 1.7-1.2s.2-1.1.2-1.2-.2-.2-.4-.3z"/></svg>
+    <span>WhatsApp</span>
+  </a>
 
 <script>
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-const nav = document.getElementById('mainNav');
-window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 20); });
-
-window.addEventListener('load', () => {
-  document.querySelectorAll('.reveal').forEach(el => {
-    if (el.getBoundingClientRect().top < window.innerHeight) setTimeout(() => el.classList.add('visible'), 100);
-  });
-});
-
 /* ═══════════════════════════════════════════
-   FORM ENDPOINT — Google Apps Script
-   Handles both the wholesale form and the PDF form.
+   LO ÚNICO QUE TIENES QUE CAMBIAR
+   WA_NUMBER : código de país, sin "+" ni espacios
+   FORM_EMAIL: a dónde llegan las solicitudes
 ═══════════════════════════════════════════ */
-const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbzG9fpAieIlszRqz-CYLivsRiO-Tt5O1S0warwhcECNUdkg0pTeuvWZ6DA2x4-yjHeW/exec";
+var WA_NUMBER  = "524439171366";
+var WA_TEXT    = "Hi Terraloma — I have a brand and I'd like to talk about a private-label boot line.";
 
-// ── PDF lead magnet → Google Apps Script (auto-sends the guide, no opt-in) ──
-function handleLMSubmit(e) {
+/* Mismo backend que la página anterior: el Apps Script que
+   escribe en tu hoja "Terraloma Leads", pestaña "Leads". */
+var SHEETS_URL = "https://script.google.com/macros/s/AKfycbzG9fpAieIlszRqz-CYLivsRiO-Tt5O1S0warwhcECNUdkg0pTeuvWZ6DA2x4-yjHeW/exec";
+
+var waURL = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(WA_TEXT);
+document.querySelectorAll('[data-wa]').forEach(function(a){a.href=waURL;a.target="_blank";a.rel="noopener";});
+
+/* ── Formulario → misma hoja de cálculo que la página anterior ── */
+var form = document.getElementById('applyForm');
+form.addEventListener('submit', function(e){
   e.preventDefault();
-  const form  = e.target;
-  const btn   = form.querySelector('.lm-btn');
-  const input = form.querySelector('.lm-input');
-  const email = input.value.trim();
-  if (!email) return;
+  var el = form.elements;
+  if(el['_honey'].value){ return; }
 
+  var btn = form.querySelector('.submit');
   btn.disabled = true;
   btn.textContent = 'Sending…';
 
-  const fd = new FormData();
-  fd.append('formType', 'pdf');
-  fd.append('email', email);
+  var val = function(k){ return (el[k] && el[k].value ? el[k].value.trim() : ''); };
 
-  fetch(GOOGLE_SHEETS_URL, { method: 'POST', body: fd })
-    .finally(() => {
-      btn.textContent = 'Check your inbox ✓';
-      btn.style.background = '#2E7D32'; btn.style.borderColor = '#2E7D32';
-      input.value = '';
-      setTimeout(() => {
-        btn.disabled = false;
-        btn.textContent = 'Get the Guide →';
-        btn.style.background = ''; btn.style.borderColor = '';
-      }, 5000);
+  /* el Apps Script espera estos nombres de campo; la solicitud
+     de marca se acomoda en las columnas que la hoja ya tiene */
+  var fd = new FormData();
+  fd.append('formType',     'wholesale');
+  fd.append('firstName',    val('name'));
+  fd.append('lastName',     '');
+  fd.append('email',        val('email'));
+  fd.append('phone',        val('whatsapp'));
+  fd.append('businessName', val('brand'));
+  fd.append('businessType', val('sells'));
+  fd.append('volume',       '');
+  var nl = String.fromCharCode(10);
+    fd.append('message',      (val('idea') ? val('idea') + nl + nl : '') + 'Instagram / web: ' + val('link'));
+
+  /* el Apps Script responde sin cabeceras CORS, así que la respuesta
+     no se puede leer: se envía y se confirma igual, con WhatsApp de respaldo */
+  fetch(SHEETS_URL, { method:'POST', body: fd })
+    .catch(function(){})
+    .then(function(){
+      form.style.display = 'none';
+      document.getElementById('formDone').style.display = 'block';
     });
-}
-
-// ── Wholesale application → Google Sheets ──
-function handleWholesaleSubmit(e) {
-  e.preventDefault();
-  const form = e.target;
-  const btn  = form.querySelector('.form-submit');
-
-  btn.disabled = true;
-  btn.textContent = 'Submitting…';
-
-  fetch(GOOGLE_SHEETS_URL, { method: 'POST', body: new FormData(form) })
-    .finally(() => {
-      btn.textContent = 'Application Submitted ✓';
-      btn.style.background = '#2E7D32'; btn.style.borderColor = '#2E7D32';
-      form.reset();
-      // Optional: also open WhatsApp so eager buyers can reach you instantly
-      setTimeout(() => {
-        window.open('https://wa.me/524439171366?text=Hi%20Terraloma%2C%20I%20just%20submitted%20my%20wholesale%20application%20through%20your%20website.', '_blank');
-      }, 1200);
-    });
-}
-
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-  });
 });
+
+/* ── Header y reveals ── */
+var hdr=document.getElementById('hdr');
+window.addEventListener('scroll',function(){hdr.classList.toggle('scrolled',window.scrollY>20);},{passive:true});
+
+var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.16,rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+
+/* custom select: construye un panel elegante a partir del <select> nativo
+   y lo mantiene sincronizado para que el form envíe el valor correctamente */
+document.querySelectorAll('[data-cs]').forEach(function(wrap){
+  var select = wrap.querySelector('select');
+  var trigger = wrap.querySelector('.cs-trigger');
+  var panel = wrap.querySelector('.cs-panel');
+  var valueEl = wrap.querySelector('.cs-value');
+  var opts = [];
+  for(var i=0;i<select.options.length;i++){
+    var opt = select.options[i];
+    if(opt.disabled && !opt.value) continue;
+    var el = document.createElement('div');
+    el.className = 'cs-option';
+    el.textContent = opt.textContent;
+    el.setAttribute('role','option');
+    el.dataset.value = opt.value || opt.textContent;
+    (function(o,e){
+      e.addEventListener('click', function(){
+        select.value = o.value || o.textContent;
+        valueEl.textContent = o.textContent;
+        trigger.classList.remove('placeholder');
+        for(var j=0;j<panel.children.length;j++) panel.children[j].classList.remove('selected');
+        e.classList.add('selected');
+        close();
+        select.dispatchEvent(new Event('change',{bubbles:true}));
+      });
+    })(opt,el);
+    panel.appendChild(el);
+    opts.push(el);
+  }
+  function open(){ wrap.classList.add('open'); trigger.setAttribute('aria-expanded','true'); }
+  function close(){ wrap.classList.remove('open'); trigger.setAttribute('aria-expanded','false'); }
+  trigger.addEventListener('click', function(e){
+    e.stopPropagation();
+    if(wrap.classList.contains('open')) close(); else open();
+  });
+  document.addEventListener('click', function(e){ if(!wrap.contains(e.target)) close(); });
+  wrap.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
+});
+
 </script>
 </body>
 </html>
